@@ -9,9 +9,7 @@ I have been building websites and using Linux since 1998. I officially started w
 
 I started building and hosting websites in the late 90s before most people owned a computer or had an Internet connection. CSS was not commonly used yet, Perl CGI scripts were the main method for sending email contact forms and PHP was not supported on all web hosting platforms.
 
-I have hosted websites using a variety of control panels in shared hosting prior to virtual private servers (VPS) being a thing and have managed Centos/Ubuntu VPS machines from the ssh shell for websites, dns, email and custom web applications for well over 10 years.
-
-In addition to my technical IT Skills, I also have image editing and graphic design skills which means I can provide a full service to my clients including web design, graphic design, system administration, web hosting and custom software development.
+I have hosted websites using a variety of control panels in shared hosting prior to virtual private servers (VPS) being a thing and have managed Redhat and Ubuntu VPS machines from the ssh shell for websites, dns, email and custom web applications for well over 10 years.
 
 I work on a per-project basis or an hourly rate which varies depending on the type of work being done.
 
