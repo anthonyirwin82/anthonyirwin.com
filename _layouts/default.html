@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: "en" }}">
+
+  {%- include head.html -%}
+
+  <body class="d-flex flex-column min-vh-100">
+
+    {%- include header.html -%}
+
+    <div aria-label="Content">
+        {{ content }}
+    </div>
+
+    {%- include footer.html -%}
+
+{% if page.debug == true %}
+<pre>
+{
+  site: {{ site | jsonify | escape }}
+  page: {{ page | jsonify | escape }}
+  include: {{ include | jsonify | escape }}
+  layout: {{ layout | jsonify | escape }}
+  content: {{ content | jsonify | escape }}
+  paginator: {{ paginator | jsonify | escape }}
+}
+</pre>
+{% endif %}
+
+    <script src="/assets/scripts/copy-code.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+  </body>
+
+</html>

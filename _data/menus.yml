@@ -1,0 +1,50 @@
+primary:
+  - title: Main Menu
+    menu:
+      - name: "Home"
+        url: "/"
+        weight: 2
+      - name: "About Anthony"
+        url: "#"
+        menu_items:
+          - name: "Information Technology"
+            url: "/about-anthony/information-technology"
+          - name: "Hypnotherapy and Coaching"
+            url: "/about-anthony/hypnotherapy"
+      - name: "Services"
+        url: "#"
+        menu_items:
+          - name: "Website Development"
+            url: "/services/website-development"
+          - name: "VPS Hosting"
+            url: "/services/vps-hosting"
+      - name: "Projects"
+        url: "#"
+        menu_items:
+          - name: "Meta Trader 4 Stuff"
+            url: "/projects/mt4-stuff/"
+          - name: "Software and Scripts"
+            url: "/projects/software/"
+      - name: "Blog"
+        url: "#"
+        weight: 3
+        menu_items:
+          - name: "All Blog Categories"
+            url: "/blog/"
+          - name: "Tech"
+            url: "/blog/tech/"
+          - name: "Programming"
+            url: "/blog/tech/programming/"
+          - name: "Linux"
+            url: "/blog/tech/linux/"
+      - name: "Contact"
+        url: "/contact/"
+        weight: 2
+footer-legal:
+  - title: Footer Menu
+    menu:
+      - name: "Privacy Policy"
+        url: "/privacy-policy/"
+        weight: 2
+      - name: "Terms and Conditions"
+        url: "/terms-and-conditions/"

@@ -1,0 +1,13 @@
+{% if page.website or page.download or page.github %}
+<p class="text-center">
+{% if page.website %}
+<a href="{{ page.website }}" class="btn btn-lg btn-success">Website</a>
+{% endif %}
+{% if page.download %}
+<a href="{{ page.download }}" class="btn btn-lg btn-primary">Download</a>
+{% endif %}
+{% if page.github %}
+<a href="{{ page.github }}" class="btn btn-lg btn-primary">Github</a>
+{% endif %}
+</p>
+{% endif %}

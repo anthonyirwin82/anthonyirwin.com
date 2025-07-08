@@ -1,0 +1,170 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+#
+# If you need help with YAML syntax, here are some quick references for you:
+# https://learn-the-web.algonquindesign.ca/topics/markdown-yaml-cheat-sheet/#yaml
+# https://learnxinyminutes.com/docs/yaml/
+#
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+
+title: Anthony Irwin
+description: >- # this means to ignore newlines until "baseurl:"
+  Anthony Irwin's Website contains his software projects, services he offers, training and blog posts.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site, e.g. http://example.com
+
+# Privacy Policy Options
+policy_name: Anthony Irwin # Individual/Company name
+policy_myour: my # my/our
+policy_iwe: I # I/we
+policy_hisher: his # his/her
+policy_meus: me # me/us
+
+github_username:  anthonyirwin82
+
+permalink: /blog/:categories/:slug/
+syntax_highlighter: rouge
+
+# Build settings
+#theme: minima
+
+plugins:
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-target-blank
+  - jekyll-paginate-v2
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - .idea/
+  - .vscode/
+  - .gitignore
+  - README.md
+  - vendor
+
+timezone: Australia/Brisbane
+
+defaults:
+- scope:
+    path: _posts
+    type: posts
+  values:
+    layout: post
+    sectionid: blog
+
+- scope:
+    path: _docs
+    type: docs
+  values:
+    layout: docs
+    sectionid: docs
+    seo:
+      type: "WebPage"
+
+- scope:
+    path: _pages
+    type: pages
+  values:
+    layout: page
+    sectionid: pages
+    seo:
+      type: "WebPage"
+
+collections:
+  docs:
+    permalink: /docs/:path/
+    output: true
+  pages:
+    permalink: /:title/
+    output: true
+
+# for jekyll-paginate-v2
+pagination:
+  enabled: true
+  collection: 'posts'
+  per_page: 10
+  # Limit how many pagenated pages to create (default: 0, means all)
+  limit: 0
+  permalink: '/page/:num/'
+  title: ':title - page :num'
+  sort_field: 'date'
+  sort_reverse: true
+  indexpage: 'index'
+  # Allow legacy pagination to work on things that use it.
+  paginate: 10
+  paginate_path: "/legacy/page:num/"
+
+jekyll-spaceship:
+  # default enabled processors
+  processors:
+    - table-processor
+    - mathjax-processor
+    - plantuml-processor
+    - mermaid-processor
+    - polyfill-processor
+    - media-processor
+    - emoji-processor
+    - element-processor
+  mathjax-processor:
+    src:
+      - https://polyfill.io/v3/polyfill.min.js?features=es6
+      - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    config:
+      tex:
+        inlineMath:
+          - ['$','$']
+          - ['\(','\)']
+        displayMath:
+          - ['$$','$$']
+          - ['\[','\]']
+      svg:
+        fontCache: 'global'
+    optimize: # optimization on building stage to check and add mathjax scripts
+      enabled: true # value `false` for adding to all pages
+      include: []   # include patterns for math expressions checking (regexp)
+      exclude: []   # exclude patterns for math expressions checking (regexp)
+  plantuml-processor:
+    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    css:
+      class: plantuml
+    syntax:
+      code: 'plantuml!'
+      custom: ['@startuml', '@enduml']
+    src: http://www.plantuml.com/plantuml/svg/
+  mermaid-processor:
+    mode: default  # mode value 'pre-fetch' for fetching image at building stage
+    css:
+      class: mermaid
+    syntax:
+      code: 'mermaid!'
+      custom: ['@startmermaid', '@endmermaid']
+    config:
+      theme: default
+    src: https://mermaid.ink/svg/
+  media-processor:
+    default:
+      id: 'media-{id}'
+      class: 'media'
+      width: '100%'
+      height: 350
+      frameborder: 0
+      style: 'max-width: 600px; outline: none;'
+      allow: 'encrypted-media; picture-in-picture'
+  emoji-processor:
+    css:
+      class: emoji
+    src: https://github.githubassets.com/images/icons/emoji/

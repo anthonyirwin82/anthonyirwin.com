@@ -1,0 +1,42 @@
+name: Deploy Jekyll Website via RSync
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 'latest'
+          bundler-cache: true
+
+      - name: Install Jekyll and Bundler
+        run: |
+          gem install jekyll bundler
+
+      - name: Install Ruby Gems
+        run: |
+          bundle install --jobs 4 --retry 3
+
+      - name: Build Jekyll Website
+        run: |
+          bundle exec jekyll build
+
+      - name: Setup SSH key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Deploy Website via RSync
+        run: |
+          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" _site ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEST }}

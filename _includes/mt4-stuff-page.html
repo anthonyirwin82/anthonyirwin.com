@@ -1,0 +1,54 @@
+{% if page.youtube %}
+{% include youtube.html %}
+{% endif %}
+{% if page.image %}
+<div class="text-center"><img class="img-fluid mb-4" src="{{ page.image }}" alt="{{ page.title }}"></div>
+{% endif %}
+
+<h3 class="text-center">{{ page.description }}</h3>
+<p class="text-center"><a href="{{ page.download }}" class="btn btn-lg btn-success">Download</a> <a href="/assets/downloads/mt4-stuff/files/mt4.zip" class="btn btn-lg btn-primary">Download All MT4 Stuff</a></p>
+
+<div class="d-flex justify-content-center align-items-center">
+{% if page.type == "script" %}
+    <div class="card mb-4" style="width: 80%;">
+        <img src="/assets/img/cards/mt4.gif" class="card-img-top">
+        <div class="card-body">
+            <h2>Installation Instructions</h2>
+            <p class="card-text">Please follow the instructions below to install this script:</p>
+            <ol>
+                <li>Save the Download file above.</li>
+                <li>Open the zip file then copy the script.</li>
+                <li>Open MetaTrader 4 then go to the ‘File’ menu then ‘Open Data Folder’.</li>
+                <li>Go into the ‘MQL4’ folder then the ‘Scripts’ folder.</li>
+                <li>Paste the script into the ‘Scripts’ folder.</li>
+                <li>Close MetaTrader 4 then open it again.</li>
+                <li>Press CTRL + N to open the Navigator window.</li>
+                <li>Browse to the scripts section then drag the script onto your chart.</li>
+            </ol>
+            <p><strong>TIP:</strong> You can right click the script in the Navigator window and click ‘Select hotkey’ to set a keyboard shortcut for running the script.</p>
+        </div>
+    </div>
+{% endif %}
+{% if page.type == "indicator" %}
+    <div class="card mb-4" style="width: 80%;">
+        <img src="/assets/img/cards/mt4.gif" class="card-img-top">
+        <div class="card-body">
+            <h2>Installation Instructions</h2>
+            <p class="card-text">Please follow the instructions below to install this indicator:</p>
+            <ol>
+                <li>Save the Download file above.</li>
+                <li>Open the zip file then copy the indicator.</li>
+                <li>Open MetaTrader 4 then go to the ‘File’ menu then ‘Open Data Folder’.</li>
+                <li>Go into the ‘MQL4’ folder then the ‘Indicators’ folder.</li>
+                <li>Paste the indicator into the ‘Indicators’ folder.</li>
+                <li>Close MetaTrader 4 then open it again.</li>
+                <li>Press CTRL + N to open the Navigator window.</li>
+                <li>Browse to the indicators section then drag the indicator onto your chart.</li>
+                <li>Save a template with the indicator so you can easily select in on any chart.</li>
+            </ol>
+        </div>
+    </div>
+{% endif %}
+
+</div>
+<p class="text-center"><a href="/projects/mt4-stuff/" class="btn btn-lg btn-primary">Back to MT4 Stuff</a></p>

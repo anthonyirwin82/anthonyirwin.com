@@ -1,0 +1,30 @@
+- card-title: "Desktop Shortcut Editor"
+  card-text: ""
+  card-img: "/assets/img/cards/desktopshortcuteditor.jpg"
+  website-url: "https://desktopshortcuteditor.anthonyirwin.com"
+  github-url: "https://github.com/anthonyirwin82/desktopshortcuteditor"
+
+- card-title: "Linux Godot Automatically Build and Deploy to itch.io"
+  card-text: ""
+  card-img: "/assets/img/cards/linuxgodotbuildscript.jpg"
+  github-url: "https://github.com/anthonyirwin82/linux-godot-build-and-deploy-to-itch"
+  
+- card-title: "C++ CMake Project Templates"
+  card-text: ""
+  card-img: "/assets/img/cards/cppmaketemplates.jpg"
+  github-url: "https://github.com/anthonyirwin82/cpp_cmake_project_templates"
+
+- card-title: "anthonyirwin.com Website"
+  card-text: ""
+  card-img: "/assets/img/cards/website.jpg"
+  website-url: "/"
+  github-url: "https://github.com/anthonyirwin82/anthonyirwin.com"  
+
+- card-title: "learnlazarus.com Website"
+  card-text: ""
+  card-img: "/assets/img/cards/learnlazarus.jpg"
+  website-url: "https://learnlazarus.com"
+  github-url: "https://github.com/anthonyirwin82/learnlazarus"  
+
+
+  

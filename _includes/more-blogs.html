@@ -1,0 +1,33 @@
+<div class="container mt-4">
+    <div class="row">
+        {% assign last_category = page.categories | last %}
+        {% if last_category %}
+        <div class="col-12 col-md-6">
+            <h2>Newest {{ last_category }} Posts:</h2>
+            <ul>
+            {% for post in site.posts %}
+            {% if post.categories contains last_category %}
+                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endif %}
+            {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="col-12{% if last_category %} col-md-6{% endif %}">
+            <h2>Newest Blog Posts:</h2>
+            <ul>
+            {% assign recent_posts = site.posts | slice: 0, 10 %}
+            {% for post in recent_posts %}
+                <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+            {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <h2>More Blog Posts You May Like:</h2>
+    <p>
+        <a class="btn btn-primary mb-3" href="/blog/tech/">Technology Posts</a>
+        <a class="btn btn-primary mb-3" href="/blog/tech/programming">Programming Posts</a>
+        <a class="btn btn-primary mb-3" href="/blog/tech/linux">Linux Posts</a>
+    </p>
+</div>

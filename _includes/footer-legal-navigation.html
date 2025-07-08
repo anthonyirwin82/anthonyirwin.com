@@ -1,0 +1,38 @@
+<nav class="navbar navbar-expand bg-dark screen" id="header-menu" data-bs-theme="dark">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      {% if site.data.menus.footer-legal[0] %}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {% for item in site.data.menus.footer-legal %}
+          {% if item.menu[0] %}
+            {% for entry in item.menu %}
+              {% assign has_dropdown = entry.menu_items and entry.menu_items.size > 0 %}
+              <li class="nav-item {% if has_dropdown %}dropdown{% endif %}">
+                <a 
+                  class="nav-link {% if has_dropdown %}dropdown-toggle{% endif %}{% if page.url == entry.url %} active{% endif %}" 
+                  href="{% if has_dropdown %}#{% else %}{{ entry.url }}{% endif %}"
+                  {% if page.url == entry.url %} aria-current="page"{% endif %}
+                  {% if has_dropdown %}
+                    id="navbarDropdown{{ forloop.index }}" 
+                    role="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false"
+                  {% endif %}>
+                  {{ entry.name }}
+                </a>
+                {% if has_dropdown %}
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ forloop.index }}">
+                    {% for subentry in entry.menu_items %}
+                      <li><a class="dropdown-item{% if page.url == subentry.url %} active{% endif %}" href="{{ subentry.url }}"{% if page.url == subentry.url %} aria-current="page"{% endif %}>{{ subentry.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+              </li>
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% endif %}
+    </div>
+  </div>
+</nav>

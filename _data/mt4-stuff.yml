@@ -1,0 +1,24 @@
+- card-title: "MT4 Change All Chart Symbols"
+  card-text: ""
+  card-img: "/assets/img/cards/mt4.gif"
+  btn-url: "/projects/mt4-stuff/mt4-change-all-chart-symbols/"
+
+- card-title: "MT4 Change All Time Frames"
+  card-text: ""
+  card-img: "/assets/img/cards/mt4.gif"
+  btn-url: "/projects/mt4-stuff/mt4-change-all-time-frames/"
+
+- card-title: "MT4 Candle Time Remaining"
+  card-text: ""
+  card-img: "/assets/img/cards/mt4.gif"
+  btn-url: "/projects/mt4-stuff/mt4-candle-time-remaining/"
+
+- card-title: "MT4 Email All Symbol Information"
+  card-text: ""
+  card-img: "/assets/img/cards/mt4.gif"
+  btn-url: "/projects/mt4-stuff/mt4-email-all-symbol-information/"
+
+- card-title: "MT4 8 Chart Slide Show"
+  card-text: ""
+  card-img: "/assets/img/cards/mt4.gif"
+  btn-url: "/projects/mt4-stuff/mt4-8-chart-slideshow/"

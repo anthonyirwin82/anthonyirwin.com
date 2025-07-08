@@ -1,0 +1,13 @@
+{% if page.youtube %}
+    {% include youtube.html %}
+{% endif %}
+
+{% if page.image %}
+<div class="text-center"><img class="img-fluid mb-4" src="{{ page.image }}" alt="{{ page.title }}"></div>
+{% endif %}
+
+{% if page.caption %}
+<h3 class="text-center">{{ page.caption }}</h3>
+{% endif %}
+
+{% include button-options.html %}
