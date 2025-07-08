@@ -15,4 +15,6 @@ I have greater flexibility in how I design my website and generate my website co
 
 I love that I'm not restricted by a page designer and I can create content my way using any code editor. I can create custom code on the fly for any situation then test locally and once I'm happy I can commit the changes to git and push the changes to GitHub, then the GitHub Actions Workflow I have setup will automatically build and deploy the website, so the latest version is always used without me having to do a thing.
 
-Overall I'm very happy with my new website using Jekyll to generate my website into static html files. It has a minimal learning curve and once setup it's very flexible making it more likely I will create new content.  
+At the end of the day, WordPress is a complete cms targeted at normal users and I'm not it's target audience. Jekyll is designed for coders and is much nicer for me to work with.
+
+Overall, I'm very happy with my new website, using Jekyll to generate my website into static html files. It has a minimal learning curve, and once setup, it's very flexible, making it more likely I will create new content.
