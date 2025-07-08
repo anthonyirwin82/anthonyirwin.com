@@ -37,9 +37,7 @@ primary:
             url: "/blog/tech/programming/"
           - name: "Linux"
             url: "/blog/tech/linux/"
-      - name: "Contact"
-        url: "/contact/"
-        weight: 2
+
 footer-legal:
   - title: Footer Menu
     menu:
