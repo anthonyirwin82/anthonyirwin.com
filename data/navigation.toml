@@ -1,0 +1,31 @@
+[[primary]]
+name = "Home"
+url = "/"
+
+[[primary]]
+name = "About"
+url = "/about-anthony/"
+
+  [[primary.menu_items]]
+  name = "Information Technology"
+  url = "/about-anthony/information-technology/"
+
+  [[primary.menu_items]]
+  name = "Hypnotherapy and Coaching"
+  url = "/about-anthony/hypnotherapy/"
+
+[[primary]]
+name = "Projects"
+url = "/projects/"
+
+  [[primary.menu_items]]
+  name = "Metatrader 4 Utilities"
+  url = "/projects/mt4-stuff/"
+
+  [[primary.menu_items]]
+  name = "Software, Websites and Scripts"
+  url = "/projects/software/"
+
+[[primary]]
+name = "Blog"
+url = "/blog/"

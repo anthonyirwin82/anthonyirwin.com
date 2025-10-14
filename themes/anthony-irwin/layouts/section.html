@@ -1,0 +1,27 @@
+
+{{ define "main" }}
+  {{ with .Params.BannerId }}
+    <div id="{{ . }}" class="container-fluid screen banner banner-height">
+  {{ else }}
+    <div id="zoom-session" class="container-fluid screen banner banner-height">
+  {{ end }}
+      <div class="d-flex justify-content-center align-items-center my-auto banner-height">
+          <h1 class="text-center">{{ .Title }}</h1>
+      </div>
+  </div>
+
+  <article class="container">
+    {{ .Content }}
+    {{ $currentPath := .Path }}
+    <ul class="list-group list-group-flush">
+      {{ range .Site.Pages }}
+        {{ if and (.Path) (strings.HasPrefix .Path $currentPath) (eq .Kind "page") }}
+          <li class="list-group-item">
+            <h2><a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a></h2>
+            <p class="mb-0 text-muted">{{ .Summary }}</p>
+          </li>
+        {{ end }}
+      {{ end }}
+    </ul>
+  </article>
+{{ end }}

@@ -1,0 +1,55 @@
+<nav class="navbar navbar-expand-lg bg-dark" id="header-menu" data-bs-theme="dark">
+  <div class="container">
+    <a class="logo-text d-flex align-items-center gap-2" href="{{ site.BaseURL }}">
+      <img src="/assets/img/Anthony-Avatar.png" class="img-fluid rounded-circle logo-img" alt="Logo">
+      {{ site.Title }}
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" 
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      {{ with site.Data.navigation.primary }}
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 sriracha-regular">
+          {{ range $index, $item := . }}
+            {{ if $item.menu_items }}
+              <li class="nav-item dropdown">
+                <a 
+                  class="nav-link dropdown-toggle text-white{{ if eq $.RelPermalink $item.url }} active{{ end }}"
+                  href="#"
+                  id="navbarDropdown{{ $index }}"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  {{ $item.name }}
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown{{ $index }}">
+                  {{ range $item.menu_items }}
+                    <li>
+                      <a class="dropdown-item{{ if eq $.RelPermalink .url }} active{{ end }}" 
+                         href="{{ .url }}"
+                         {{ if eq $.RelPermalink .url }}aria-current="page"{{ end }}>
+                        {{ .name }}
+                      </a>
+                    </li>
+                  {{ end }}
+                </ul>
+              </li>
+            {{ else }}
+              <li class="nav-item">
+                <a 
+                  class="nav-link text-white{{ if eq $.RelPermalink $item.url }} active{{ end }}" 
+                  href="{{ $item.url }}"
+                  {{ if eq $.RelPermalink $item.url }}aria-current="page"{{ end }}>
+                  {{ $item.name }}
+                </a>
+              </li>
+            {{ end }}
+          {{ end }}
+        </ul>
+      {{ end }}
+    </div>
+  </div>
+</nav>

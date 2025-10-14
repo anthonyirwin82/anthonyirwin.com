@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand bg-dark screen" id="header-menu" data-bs-theme="dark">
+  <div class="container">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      {{ with .Site.Menus.policy }}
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        {{ range . }}
+          {{ $hasChildren := .HasChildren }}
+          <li class="nav-item {{ if $hasChildren }}dropdown{{ end }}">
+            <a
+              class="nav-link {{ if $hasChildren }}dropdown-toggle{{ end }}{{ if .Page.IsMenuCurrent "policy" . }} active{{ end }}"
+              href="{{ if $hasChildren }}#{{
+                else }}{{ .URL }}{{ end }}"
+              {{ if .Page.IsMenuCurrent "policy" . }}aria-current="page"{{ end }}
+              {{ if $hasChildren }}
+                id="navbarDropdown{{ .Identifier }}"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              {{ end }}>
+              {{ .Name }}
+            </a>
+
+            {{ if $hasChildren }}
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown{{ .Identifier }}">
+              {{ range .Children }}
+              <li>
+                <a
+                  class="dropdown-item{{ if .Page.IsMenuCurrent "policy" . }} active{{ end }}"
+                  href="{{ .URL }}"
+                  {{ if .Page.IsMenuCurrent "policy" . }}aria-current="page"{{ end }}>
+                  {{ .Name }}
+                </a>
+              </li>
+              {{ end }}
+            </ul>
+            {{ end }}
+          </li>
+        {{ end }}
+      </ul>
+      {{ end }}
+    </div>
+  </div>
+</nav>
+

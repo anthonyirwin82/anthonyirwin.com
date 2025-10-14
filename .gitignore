@@ -1,0 +1,8 @@
+package-lock.json
+node_modules/
+assets/js/bootstrap.bundle.min.js
+assets/js/popper.min.js
+assets/scss/bootstrap
+resources/_gen/
+.hugo_build.lock
+public/

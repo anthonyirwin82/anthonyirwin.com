@@ -1,0 +1,30 @@
+{{- with resources.Get "css/main.css" }}
+  {{- if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- with . | minify | fingerprint }}
+      <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+
+{{- $style := resources.Get "scss/styles.scss" | css.Sass }}
+{{- with $style }}
+  {{- if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- $minified := . | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $minified.RelPermalink }}" integrity="{{ $minified.Data.Integrity }}" crossorigin="anonymous">
+  {{- end }}
+{{- end }}
+
+{{- $style := resources.Get "scss/fonts.scss" | css.Sass }}
+{{- with $style }}
+  {{- if hugo.IsDevelopment }}
+    <link rel="stylesheet" href="{{ .RelPermalink }}">
+  {{- else }}
+    {{- $minified := . | resources.Minify | resources.Fingerprint }}
+    <link rel="stylesheet" href="{{ $minified.RelPermalink }}" integrity="{{ $minified.Data.Integrity }}" crossorigin="anonymous">
+  {{- end }}
+{{- end }}

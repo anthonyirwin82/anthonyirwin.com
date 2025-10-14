@@ -1,0 +1,11 @@
+[markup]
+  [markup.highlight]
+    lineNoStart = 1
+    lineNos = false
+    lineNumbersInTable = false
+    # Higlight Styles: https://gohugo.io/quick-reference/syntax-highlighting-styles/
+    #style = 'monokai'
+    #style = 'monokailight'
+    #style = 'paraiso-light'
+    #style = 'pygments'
+    style = 'solarized-light'

@@ -1,0 +1,23 @@
+baseURL = 'https://anthonyirwin.com/'
+languageCode = 'en-us'
+theme = 'anthony-irwin'
+title = 'Anthony Irwin'
+enableRobotsTXT = true
+
+[params]
+owner = 'Anthony Irwin'
+abn = '12 522 502 130'
+
+[services]
+[services.googleAnalytics]
+id = 'G-MEASUREMENT_ID'
+
+[params.social]
+twitter = 'anthonyirwin82'
+
+[params.policy]
+name = "Anthony Irwin"
+myour = "my"
+iwe = "I"
+meus = "me"
+hisher = "his"

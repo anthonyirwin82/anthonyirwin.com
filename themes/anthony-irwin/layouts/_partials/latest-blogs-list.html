@@ -1,0 +1,13 @@
+<section>
+  <h2 class="mb-4">Latest Blog Posts:</h2>
+  <ul class="list-group list-group-flush">
+
+    {{ $types := slice "blog" "other" }}
+    {{ range first 10 (where (sort .Site.RegularPages "Date" "desc") "Type" "in" $types) }}
+      <li class="list-group-item">
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p class="mb-0 text-muted">{{ .Summary }}</p>
+      </li>
+    {{ end }}
+  </ul>
+</section>

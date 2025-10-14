@@ -1,0 +1,9 @@
+<div class="d-flex justify-content-center align-items-center">
+  {{partial "policy-nav.html" .}}
+</div>
+<div class="container">
+  <p class="text-center">Copyright © {{ now.Year }} {{ .Site.Params.owner }}, All rights Reserved.
+  {{ with .Site.Params.abn}}
+    <br>ABN: {{ . }}<br>&nbsp;</p>
+  {{ end }}
+</div>

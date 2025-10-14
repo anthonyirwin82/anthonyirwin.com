@@ -1,0 +1,21 @@
+{{ define "main" }}
+{{ with .Params.BannerId }}
+  <div id="{{ . }}" class="container-fluid screen banner banner-height">
+{{ else }}
+  <div id="data-center" class="container-fluid screen banner banner-height">
+{{ end }}
+      <div class="d-flex justify-content-center align-items-center my-auto banner-height">
+          <h1 class="text-center">{{ .Title }}</h1>
+      </div>
+  </div>
+  <main class="container">
+
+    <p>The page you requested cannot be found.</p>
+    {{ partial "latest-blogs-list.html" .}}
+    <p>
+      <a class="btn btn-primary" href="{{ .Site.Home.RelPermalink }}">
+        Return to the home page
+      </a>
+    </p> 
+  </main>
+{{ end }}

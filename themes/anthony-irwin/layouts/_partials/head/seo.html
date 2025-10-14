@@ -1,0 +1,31 @@
+{{ $author := .Params.Author }}
+{{ $copyright := .Params.Copyright }}
+
+{{ with $author }}
+  <meta name="author" content="{{ . }}">
+{{ else }}
+  {{ $author = "Anthony Irwin"}}
+  <meta name="author" content="{{ $author }}">
+{{end}}
+
+{{ with $copyright }}
+  <meta name="copyright" content="{{ . }}">
+{{ else }}
+  <meta name="copyright" content="{{ $author }}">
+{{ end }}
+
+{{ with .Params.Description }}
+  <meta name="description" content="{{ . }}">
+{{ else }}
+  {{/* use hugo generated summary of page and trim leading/trailing white space and remove html etc */}}
+  <meta name="description" content="{{ trim .Summary ' ' | plainify | htmlEscape }}">
+{{ end}}
+
+{{ with .Params.Robots }}
+  <meta name="robots" content="{{ . }}">
+{{ else }}
+  <meta name="robots" content="index, follow">
+{{ end }}
+
+{{ partial "opengraph.html" . }}
+{{ partial "twitter_cards.html" . }}

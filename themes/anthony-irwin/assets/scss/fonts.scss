@@ -1,0 +1,44 @@
+@font-face {
+  font-family: "Rancho";
+  src: url("/assets/fonts/Rancho/Rancho-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Caveat";
+  src: url("/assets/fonts/Caveat/Caveat-VariableFont_wght.ttf") format("truetype");
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: larger;
+}
+
+@font-face {
+  font-family: "Sriracha";
+  src: url("/assets/fonts/Sriracha/Sriracha-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-size: larger;
+}
+
+.rancho-regular {
+  font-family: "Rancho", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.caveat {
+  font-family: "Caveat", cursive;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: larger;
+}
+
+.sriracha-regular {
+  font-family: "Sriracha", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: larger;
+}

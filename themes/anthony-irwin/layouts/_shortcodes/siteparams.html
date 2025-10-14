@@ -1,0 +1,4 @@
+{{ $key := .Get 0 }}
+{{ with index .Site.Params $key }}
+  {{ . }}
+{{ end }}

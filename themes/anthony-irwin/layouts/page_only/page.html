@@ -1,0 +1,15 @@
+{{ define "main" }}
+{{ with .Params.BannerId }}
+  <div id="{{ . }}" class="container-fluid screen banner banner-height">
+{{ else }}
+  <div id="zoom-session" class="container-fluid screen banner banner-height">
+{{ end }}
+      <div class="d-flex justify-content-center align-items-center my-auto banner-height">
+          <h1 class="text-center">{{ .Title }}</h1>
+      </div>
+  </div>
+  <article class="container">
+    {{ .Content }}
+    {{ partial "terms.html" (dict "taxonomy" "tags" "page" .) }}
+  </article>
+{{ end }}
