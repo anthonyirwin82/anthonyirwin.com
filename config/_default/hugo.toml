@@ -9,3 +9,9 @@
     #style = 'paraiso-light'
     #style = 'pygments'
     style = 'solarized-light'
+
+  [markup.postCSS]
+    use = ["postcss"]
+
+[build]
+writeStats = true

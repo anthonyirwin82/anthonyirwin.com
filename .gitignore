@@ -5,4 +5,5 @@ assets/js/popper.min.js
 assets/scss/bootstrap
 resources/_gen/
 .hugo_build.lock
+hugo_stats.json
 public/
