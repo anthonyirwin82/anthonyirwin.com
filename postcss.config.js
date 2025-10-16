@@ -14,6 +14,7 @@ const purgeCSSPlugin = () => {
           './hugo_stats.json',
           // ✅ All themes' layouts and JS
           './themes/**/layouts/**/*.html',
+          './themes/**/content/**/*.md',
           './themes/**/assets/js/**/*.js'
         ],
         css: [{ raw: root.toString() }],
