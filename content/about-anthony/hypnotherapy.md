@@ -27,7 +27,7 @@ Well, that’s where I was a few years back and I can confidently say that hypno
         <p>I have done a dedicated course in Clinical Hypnosis and Strategic Psychotherapy with the Institute of Applied Psychology that is a Government Accredited Tertiary Qualification that exceeds the education and training requirements of all Hypnotherapy Associations that are recognised by the Hypnotherapy Council of Australia the peak industry body in Australia for Hypnotherapy.</p>
     </div>
     <div class="col-12 order-1 col-md-5 order-md-2">
-        <img src="/assets/img/about/Diploma-of-Clinical-Hypnosis-and-Strategic-Psychotherapy.webp" class="img-fluid">
+        <img src="/assets/img/about/Diploma-of-Clinical-Hypnosis-and-Strategic-Psychotherapy.webp" class="img-fluid" loading="lazy">
     </div>
 </div>
 {{</rawhtml>}}

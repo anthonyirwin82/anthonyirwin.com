@@ -20,15 +20,14 @@
     {{ with .Params.Youtube }}
       <div class="d-flex justify-content-center align-items-center">
       <iframe class="img-fluid mb-4" src="{{ . }}" 
-              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+              title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen loading="lazy">
           </iframe>
       </div>
     {{ end }}
 
     {{ with .Params.Image }}
       <div class="text-center">
-        <img class="img-fluid mb-4" src="{{ . }}" alt="{{ $title }}">
+        <img class="img-fluid mb-4" src="{{ . }}" alt="{{ $title }}" loading="lazy">
       </div>
     {{ end }}
 
@@ -47,7 +46,7 @@
 
       {{ if eq .Params.Mt4type "script" }}
         <div class="card mb-4" style="width: 80%;">
-          <img src="/assets/img/cards/mt4.webp" class="card-img-top">
+          <img src="/assets/img/cards/mt4.webp" class="card-img-top" loading="lazy">
           <div class="card-body">
             <h2>Installation Instructions</h2>
             <p class="card-text">Please follow the instructions below to install this script:</p>
@@ -68,7 +67,7 @@
 
       {{ if eq .Params.Mt4type "indicator" }}
         <div class="card mb-4" style="width: 80%;">
-          <img src="/assets/img/cards/mt4.webp" class="card-img-top">
+          <img src="/assets/img/cards/mt4.webp" class="card-img-top" loading="lazy">
           <div class="card-body">
             <h2>Installation Instructions</h2>
             <p class="card-text">Please follow the instructions below to install this indicator:</p>
