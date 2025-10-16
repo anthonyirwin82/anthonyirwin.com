@@ -18,5 +18,6 @@
   {{ end }}
 {{ else }}
   {{ $bundle := $cssFiles | resources.Concat "css/styles-bundle.css" | minify | fingerprint }}
+  <link rel="preload" href="{{ $bundle.RelPermalink }}" as="style" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
 {{ end }}
