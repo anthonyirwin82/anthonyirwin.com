@@ -27,5 +27,5 @@
   {{ end }}
 {{ else }}
   {{ $bundle := $scripts | resources.Concat "js/bundle.js" | fingerprint }}
-  <script src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous"></script>
+  <script src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous" defer></script>
 {{ end }}
