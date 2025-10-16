@@ -18,7 +18,11 @@
         {{ if and (.Path) (strings.HasPrefix .Path $currentPath) (eq .Kind "page") }}
           <li class="list-group-item">
             <h2><a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a></h2>
-            <p class="mb-0 text-muted">{{ .Summary }}</p>
+            {{ with .Params.Description }}
+              <p class="mb-0 text-muted">{{ . }}</p>
+            {{ else }}
+              <p class="mb-0 text-muted">{{ .Summary }}</p>
+            {{ end }}
           </li>
         {{ end }}
       {{ end }}
