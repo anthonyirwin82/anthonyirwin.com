@@ -32,7 +32,7 @@ jobs:
           cp node_modules/@popperjs/core/dist/umd/popper.min.js assets/js
 
       - name: Build Hugo site
-        run: hugo
+        run: hugo --minify
 
       - name: Setup SSH key
         run: |
