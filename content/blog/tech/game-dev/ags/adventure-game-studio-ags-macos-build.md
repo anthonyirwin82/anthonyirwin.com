@@ -2,7 +2,6 @@
 date = "2022-02-02"
 title = "Adventure Game Studio AGS MacOS Build"
 description = "How to play windows AGS games in a MacOS AGS Bundle and how to release your own games in a MacOS AGS Bundle with codesigning and notorization"
-summary = "How to play windows AGS games in a MacOS AGS Bundle and how to release your own games in a MacOS AGS Bundle with codesigning and notorization"
 tags = ["Tech", "Game-Dev", "AGS"]
 aliases = ["/adventure-game-studio-ags-macos-build/"]
 draft = false
