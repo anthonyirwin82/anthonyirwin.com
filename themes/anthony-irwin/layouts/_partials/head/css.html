@@ -1,30 +1,22 @@
-{{- with resources.Get "css/main.css" }}
-  {{- if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- $mainCSS := . | postCSS | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $mainCSS.RelPermalink }}" integrity="{{ $mainCSS.Data.Integrity }}" crossorigin="anonymous">
-  {{- end }}
-{{- end }}
+{{ $cssFiles := slice }}
 
-{{/* SCSS: styles.scss */}}
-{{- $stylesSCSS := resources.Get "scss/styles.scss" | toCSS | postCSS }}
-{{- with $stylesSCSS }}
-  {{- if hugo.IsDevelopment }}
-    <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- $stylesMin := . | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $stylesMin.RelPermalink }}" integrity="{{ $stylesMin.Data.Integrity }}" crossorigin="anonymous">
-  {{- end }}
-{{- end }}
+{{/* Add main.css */}}
+{{ $mainCSS := resources.Get "css/main.css" }}
+{{ $cssFiles = $cssFiles | append ($mainCSS | postCSS) }}
 
-{{/* SCSS: fonts.scss */}}
-{{- $fontsSCSS := resources.Get "scss/fonts.scss" | toCSS | postCSS }}
-{{- with $fontsSCSS }}
-  {{- if hugo.IsDevelopment }}
+{{/* Add styles.scss */}}
+{{ $stylesSCSS := resources.Get "scss/styles.scss" | toCSS | postCSS }}
+{{ $cssFiles = $cssFiles | append $stylesSCSS }}
+
+{{/* Add fonts.scss */}}
+{{ $fontsSCSS := resources.Get "scss/fonts.scss" | toCSS | postCSS }}
+{{ $cssFiles = $cssFiles | append $fontsSCSS }}
+
+{{ if hugo.IsDevelopment }}
+  {{ range $cssFiles }}
     <link rel="stylesheet" href="{{ .RelPermalink }}">
-  {{- else }}
-    {{- $fontsMin := . | minify | fingerprint }}
-    <link rel="stylesheet" href="{{ $fontsMin.RelPermalink }}" integrity="{{ $fontsMin.Data.Integrity }}" crossorigin="anonymous">
-  {{- end }}
-{{- end }}
+  {{ end }}
+{{ else }}
+  {{ $bundle := $cssFiles | resources.Concat "css/styles-bundle.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}

@@ -1,41 +1,31 @@
-{{- with resources.Get "js/main.js" }}
-  {{- $opts := dict
+{{ $scripts := slice }}
+
+{{/* Build and add main.js */}}
+{{ $mainJS := resources.Get "js/main.js" | js.Build (dict
     "minify" (not hugo.IsDevelopment)
     "sourceMap" (cond hugo.IsDevelopment "external" "")
-    "targetPath" "js/main.js"
-  }}
-  {{- with . | js.Build $opts }}
-    {{- if hugo.IsDevelopment }}
-      <script src="{{ .RelPermalink }}"></script>
-    {{- else }}
-      {{- with . | fingerprint }}
-        <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
-      {{- end }}
-    {{- end }}
-  {{- end }}
-{{- end }}
+) }}
+{{ $scripts = $scripts | append $mainJS }}
 
-{{- with resources.Get "js/popper.min.js" }}
-  <script src="{{ .RelPermalink }}"></script>
-{{- end }}
+{{/* Add raw vendor JS (minified already) */}}
+{{ $popper := resources.Get "js/popper.min.js" }}
+{{ $scripts = $scripts | append $popper }}
 
-{{- with resources.Get "js/bootstrap.bundle.min.js" }}
-  <script src="{{ .RelPermalink }}"></script>
-{{- end }}
+{{ $bootstrap := resources.Get "js/bootstrap.bundle.min.js" }}
+{{ $scripts = $scripts | append $bootstrap }}
 
-{{- with resources.Get "js/copy-code.js" }}
-  {{- $opts := dict
+{{/* Build and add copy-code.js */}}
+{{ $copyCode := resources.Get "js/copy-code.js" | js.Build (dict
     "minify" (not hugo.IsDevelopment)
     "sourceMap" (cond hugo.IsDevelopment "external" "")
-    "targetPath" "js/copy-code.js"
-  }}
-  {{- with . | js.Build $opts }}
-    {{- if hugo.IsDevelopment }}
-      <script src="{{ .RelPermalink }}"></script>
-    {{- else }}
-      {{- with . | fingerprint }}
-        <script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous"></script>
-      {{- end }}
-    {{- end }}
-  {{- end }}
-{{- end }}
+) }}
+{{ $scripts = $scripts | append $copyCode }}
+
+{{ if hugo.IsDevelopment }}
+  {{ range $scripts }}
+    <script src="{{ .RelPermalink }}"></script>
+  {{ end }}
+{{ else }}
+  {{ $bundle := $scripts | resources.Concat "js/bundle.js" | fingerprint }}
+  <script src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ end }}
