@@ -12,6 +12,9 @@ const purgeCSSPlugin = () => {
           './content/**/*.md',
           './assets/js/**/*.js',
           './hugo_stats.json',
+          // ✅ All themes' layouts and JS
+          './themes/**/layouts/**/*.html',
+          './themes/**/assets/js/**/*.js'
         ],
         css: [{ raw: root.toString() }],
         defaultExtractor: content =>
