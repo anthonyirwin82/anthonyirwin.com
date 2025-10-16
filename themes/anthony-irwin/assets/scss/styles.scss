@@ -48,7 +48,7 @@ article p:first-of-type::first-letter, main p:first-of-type::first-letter {
   min-height: 300px;
   padding: 1.5625rem;
   background-color: $site-primary-color;
-  background-image:url('/assets/img/mt4/candlestick-chart.jpg');
+  background-image:url('/assets/img/mt4/candlestick-chart.webp');
   background-repeat: no-repeat;
   background-position: top;
   background-size: cover;
@@ -89,25 +89,25 @@ article p:first-of-type::first-letter, main p:first-of-type::first-letter {
 }
 
 #zoom-session {
-  background-image:url('/assets/img/banners/zoom-session.jpg');
+  background-image:url('/assets/img/banners/zoom-session.webp');
   background-position: center;
 }
 
 #data-center {
-  background-image:url('/assets/img/banners/data-center.jpg');
+  background-image:url('/assets/img/banners/data-center.webp');
 }
 
 #web-dev {
-  background-image:url('/assets/img/banners/web-dev.jpg');
+  background-image:url('/assets/img/banners/web-dev.webp');
 }
 
 #hypnosis {
-  background-image:url('/assets/img/banners/hypnosis.jpg');
+  background-image:url('/assets/img/banners/hypnosis.webp');
   background-position: center top;
 }
 
 #legal {
-  background-image:url('/assets/img/banners/legal-bg.jpg');
+  background-image:url('/assets/img/banners/legal-bg.webp');
   background-position: center bottom;
 }
 

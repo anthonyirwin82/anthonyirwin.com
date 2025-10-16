@@ -75,7 +75,7 @@ You should also change the ags.icns in the resources folder of the app bundle to
 
 You should also change the Executable File, Get Info String, Bundle identifier, Bundle name, Bundle version and Copyright fields in the Info.plist file that is in the app bundle.
 
-![](/assets/img/blog/tech/game-dev/ags/ags-info.plist.png) 
+![](/assets/img/blog/tech/game-dev/ags/ags-info.plist.webp) 
 
 To code sign and notarize your app do the following:
 
@@ -102,7 +102,7 @@ Additionally, if you do any changes to your game bundle (like a little patch, up
 
 * if you wish to locally test your debug build with Steam/GOG dylibs, you need proper entitlements in your Entitlements.plist file (the one you use to sign the app), otherwise your game will crash and burn while trying to access Galaxy/Steam shared libs:
 
-![](/assets/img/blog/tech/game-dev/ags/entitlements.plist.png) 
+![](/assets/img/blog/tech/game-dev/ags/entitlements.plist.webp) 
 
 If you wish to quickly (re)build your game *.app bundle, you can use the following script in the build directory with the CMakeList.txt file:
 
