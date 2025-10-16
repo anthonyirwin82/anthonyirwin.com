@@ -1,5 +1,6 @@
 @font-face {
   font-family: "Rancho";
+  font-display: auto;
   src: url("/assets/fonts/Rancho/Rancho-Regular.woff2") format("woff2"),
        url("/assets/fonts/Rancho/Rancho-Regular.ttf") format("truetype");
   font-weight: 400;
@@ -8,6 +9,7 @@
 
 @font-face {
   font-family: "Caveat";
+  font-display: auto;
   src: url("/assets/fonts/Caveat/Caveat-VariableFont_wght.woff2") format("woff2"),
        url("/assets/fonts/Caveat/Caveat-VariableFont_wght.ttf") format("truetype");
   font-optical-sizing: auto;
@@ -18,6 +20,7 @@
 
 @font-face {
   font-family: "Sriracha";
+  font-display: auto;
   src: url("/assets/fonts/Sriracha/Sriracha-Regular.woff2") format("woff2"),
        url("/assets/fonts/Sriracha/Sriracha-Regular.ttf") format("truetype");
   font-weight: 400;
