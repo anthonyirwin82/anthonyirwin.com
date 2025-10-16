@@ -1,28 +1,28 @@
 - cardTitle: "Desktop Shortcut Editor"
   cardText: ""
-  cardImg: "/assets/img/cards/desktopshortcuteditor.webp"
+  cardImg: "/img/cards/desktopshortcuteditor.webp"
   websiteUrl: "https://desktopshortcuteditor.anthonyirwin.com"
   githubUrl: "https://github.com/anthonyirwin82/desktopshortcuteditor"
 
 - cardTitle: "Linux Godot Automatically Build and Deploy to itch.io"
   cardText: ""
-  cardImg: "/assets/img/cards/linuxgodotbuildscript.webp"
+  cardImg: "/img/cards/linuxgodotbuildscript.webp"
   githubUrl: "https://github.com/anthonyirwin82/linux-godot-build-and-deploy-to-itch"
   
 - cardTitle: "C++ CMake Project Templates"
   cardText: ""
-  cardImg: "/assets/img/cards/cppmaketemplates.webp"
+  cardImg: "/img/cards/cppmaketemplates.webp"
   githubUrl: "https://github.com/anthonyirwin82/cpp_cmake_project_templates"
 
 - cardTitle: "anthonyirwin.com Website"
   cardText: ""
-  cardImg: "/assets/img/cards/website.webp"
+  cardImg: "/img/cards/website.webp"
   websiteUrl: "/"
   githubUrl: "https://github.com/anthonyirwin82/anthonyirwin.com"  
 
 - cardTitle: "learnlazarus.com Website"
   cardText: ""
-  cardImg: "/assets/img/cards/learnlazarus.webp"
+  cardImg: "/img/cards/learnlazarus.webp"
   websiteUrl: "https://learnlazarus.com"
   githubUrl: "https://github.com/anthonyirwin82/learnlazarus"  
 

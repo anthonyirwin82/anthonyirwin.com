@@ -4,26 +4,37 @@
   I wrote these utilities to provide features that the paid software had to the free Metatrader 4 platform
   provided to users by the brokers. I have published them here on my website in the hope that others will find them useful.
 </p>
-
 <div class="container text-center mb-4">
   <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3 g-4">
-    {{ range site.Data.mt4stuff }}
-      <div class="col d-flex justify-content-center">
-        <div class="card h-100 d-flex flex-column" style="width: 340px;">
-          <img src="{{ .cardImg }}" class="card-img-top" alt="{{ .cardTitle }}">
+{{ range site.Data.mt4stuff }}
+  {{ $item := . }}
+  <div class="col d-flex justify-content-center">
+    <div class="card h-100 d-flex flex-column" style="width: 340px;">
 
-          <div class="card-body d-flex flex-column bg-dark">
-            <h5 class="card-title text-white">{{ .cardTitle }}</h5>
-            <p class="card-text text-white">{{ .cardText }}</p>
+      {{ with resources.Get $item.cardImg }}
+        {{ $resized := .Resize "338x200" }}
+        <img 
+          src="{{ $resized.RelPermalink }}" 
+          alt="{{ $item.cardTitle }}" 
+          width="{{ $resized.Width }}" 
+          height="{{ $resized.Height }}" 
+          class="card-img-top"
+          loading="lazy"
+        />
+      {{ end }}
 
-            <div class="mt-auto">
-              {{ with .btnUrl }}
-                <a href="{{ . }}" class="btn btn-primary">See More</a>
-              {{ end }}
-            </div>
-          </div>
+      <div class="card-body d-flex flex-column bg-dark">
+        <h5 class="card-title text-white">{{ $item.cardTitle }}</h5>
+        <p class="card-text text-white">{{ $item.cardText }}</p>
+
+        <div class="mt-auto">
+          {{ with $item.btnUrl }}
+            <a href="{{ . }}" class="btn btn-primary">See More</a>
+          {{ end }}
         </div>
       </div>
-    {{ end }}
+    </div>
+  </div>
+{{ end }}
   </div>
 </div>
