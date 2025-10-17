@@ -8,7 +8,8 @@
     #style = 'monokailight'
     #style = 'paraiso-light'
     #style = 'pygments'
-    style = 'solarized-light'
+    #style = 'solarized-light'
+    style = 'dracula'
 
   [markup.postCSS]
     use = ["postcss"]
