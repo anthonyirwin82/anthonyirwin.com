@@ -131,6 +131,7 @@ This website example has a layouts/_partials/head/css.html file that is included
   <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
 {{ end }}
 ```
+**NOTE:** Only files in the assets directory are processed by Hugo. If you have these files in the static directory they need to be moved to assets.
 
 The file above will process the CSS files with PostCSS stripping out any unused CSS then if it is a development build it will create multiple CSS files without minifying them. If it is not a development build then it combines all the CSS files into styles-bundle.css then minifies it.
 
