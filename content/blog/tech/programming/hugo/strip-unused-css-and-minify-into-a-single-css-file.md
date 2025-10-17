@@ -10,7 +10,7 @@ Using Hugo with PostCSS and PurgeCSS allows you to automatically remove unused C
 
 Stripping out unused CSS is particularly useful if you use frameworks like Bootstrap as you generally don't use the entire framework. 
 
-You can install the PostCSS and PurgeCSS tools using npm, if you don't have npm installed you can follow the instructions below for popular linux distributions.
+You can install the PostCSS and PurgeCSS tools using npm, if you don't have npm installed you can follow the instructions below for popular Linux distributions.
 
 {{<blogsnippet "install_npm">}}
 
@@ -20,6 +20,8 @@ You can then go to your Hugo root directory and run:
 npm init
 npm install postcss postcss-cli purgecss autoprefixer
 ```
+
+## Setup the postcss.config.js configuration file
 
 From inside the Hugo root directory create the config file **postcss.config.js**
 
@@ -67,6 +69,8 @@ module.exports = {
 };
 ```
 
+## Add required settings to your hugo.toml configuration file
+
 Then you need to add the following into your **hugo.toml** config file.
 ```toml
 [markup.postCSS]
@@ -77,6 +81,8 @@ Then you need to add the following into your **hugo.toml** config file.
 ```
 
 The writeStats setting is needed so PurgeCSS knows what CSS is being used.
+
+## Create css.html partial file to process the CSS files
 
 The file to edit or create next will depend on if you are using a theme or if you are overriding the themes baseof.html in your Hugo project.
 
@@ -104,7 +110,7 @@ themes/theme-name
 
 The above listing is a stripped down version showing some of the essential theme files for a Hugo website.
 
-This website example has a layouts/_partials/head/css.html file that is included as a partial for including all CSS related content.
+This website example has a **layouts/_partials/head/css.html** file that is included as a partial for including all CSS related content.
 
 ```go-html-template
 {{ $cssFiles := slice }}
@@ -126,20 +132,24 @@ This website example has a layouts/_partials/head/css.html file that is included
     <link rel="stylesheet" href="{{ .RelPermalink }}">
   {{ end }}
 {{ else }}
-  {{ $bundle := $cssFiles | resources.Concat "css/styles-bundle.css" | minify | fingerprint }}
+  {{ $bundle := $cssFiles | resources.Concat "css/styles-bundle.min.css" | minify | fingerprint }}
   <link rel="preload" href="{{ $bundle.RelPermalink }}" as="style" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous">
 {{ end }}
 ```
 **NOTE:** Only files in the assets directory are processed by Hugo. If you have these files in the static directory they need to be moved to assets.
 
-The file above will process the CSS files with PostCSS stripping out any unused CSS then if it is a development build it will create multiple CSS files without minifying them. If it is not a development build then it combines all the CSS files into styles-bundle.css then minifies it.
+The file above will process the CSS files with PostCSS stripping out any unused CSS then if it is a development build it will create multiple CSS files without minifying them. If it is not a development build then it combines all the CSS files into **styles-bundle.min.css** then minifies it.
 
-So now you need to make sure that your Hugo setup includes this css.html file somewhere in the head tag in the html of your website by using:
+## Include the css.html file in your Hugo website
+
+So now you need to make sure that your Hugo setup includes this **css.html** file somewhere in the head tag in the html of your website by using:
 
 ```go-html-template
 {{ partial "head/css.html" . }}
 ```
+
+## Test your Hugo website to make sure everything is working correctly
 
 Once you have done this have a look at the page source in both development builds and production builds:
 
@@ -159,3 +169,6 @@ rm -Rf public && hugo --minify && cd public && php -S localhost:1313
 ```
 
 In the above examples I'm using php to easily spin up a webserver to test the production builds. If you don't have php installed then you can either install php or use another tool to test the production builds before you deploy them.
+
+## Conclusion
+If you setup everything correctly you should be stripping unused css from your css files and have a minified **styles-bundle.min.css** file in your production builds which will help improve performance when loading your website.
