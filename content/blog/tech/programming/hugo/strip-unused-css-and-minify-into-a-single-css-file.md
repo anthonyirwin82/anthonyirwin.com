@@ -4,7 +4,7 @@ title = 'How to strip unused CSS from your CSS files and Minify them into a sing
 description = 'Using Hugo with PostCSS and PurgeCSS allows you to automatically remove unused CSS and bundle all your styles into a single minified file for production, improving page load times and performance.'
 tags = ['Tech', 'Programming', 'Hugo']
 bannerId = 'web-dev'
-draft = true
+draft = false
 +++
 Using Hugo with PostCSS and PurgeCSS allows you to automatically remove unused CSS and bundle all your styles into a single minified file for production, improving page load times and performance.
 
