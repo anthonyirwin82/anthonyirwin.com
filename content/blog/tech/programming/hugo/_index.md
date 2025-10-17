@@ -1,4 +1,4 @@
 +++
-title = "Jekyll Posts"
+title = "Hugo Posts"
 bannerId = "web-dev"
 +++
