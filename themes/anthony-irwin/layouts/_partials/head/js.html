@@ -8,10 +8,6 @@
 {{ $scripts = $scripts | append $mainJS }}
 
 {{/* Add raw vendor JS (minified already) */}}
-{{ $mermaid := resources.Get "js/mermaid.min.js" }}
-{{ $scripts = $scripts | append $mermaid }}
-
-{{/* Add raw vendor JS (minified already) */}}
 {{ $popper := resources.Get "js/popper.min.js" }}
 {{ $scripts = $scripts | append $popper }}
 
@@ -35,7 +31,13 @@
   <script src="{{ $bundle.RelPermalink }}" integrity="{{ $bundle.Data.Integrity }}" crossorigin="anonymous" defer></script>
 {{ end }}
 
-{{/* Add required script tag for mermaid in both dev and production */}}
-<script>
-  mermaid.initialize({ startOnLoad: true });
-</script>
+{{/* Mermaid is a large js library so only include if it is being used */}}
+{{ if .Page.Store.Get "hasMermaid" }}
+  {{/* Add raw vendor JS (minified already) */}}
+  {{ $mermaid := resources.Get "js/mermaid.min.js" | fingerprint }}
+  <script src="{{ $mermaid.RelPermalink }}" integrity="{{ $mermaid.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{/* Add required script tag for mermaid in both dev and production */}}
+  <script>
+    mermaid.initialize({ startOnLoad: true });
+  </script>
+{{ end }}
