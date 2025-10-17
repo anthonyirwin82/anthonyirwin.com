@@ -160,7 +160,7 @@ I have made this file self contained with inline css styles to make the copy but
 
 This makes using the **copy-code.js** really easy as it's the only file you need to get everything working.
 
-## Include the copy-code.js file you your Hugo website
+## Include the copy-code.js file in your Hugo website
 
 Now we need to add the **copy-code.js** file so that is included at the end of the body tag.
 
