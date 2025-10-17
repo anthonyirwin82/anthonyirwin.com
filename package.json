@@ -10,7 +10,7 @@
     "copy:bootstrap-scss": "cp -rf node_modules/bootstrap assets/scss/",
     "copy:popper": "cp node_modules/@popperjs/core/dist/umd/popper.min.js assets/js/",
     "copy:all": "npm run create:assets && npm run copy:mermaid && npm run copy:popper && npm run copy:bootstrap-js && npm run copy:bootstrap-scss",
-    "rm:public": "[ -d public ] && rm -Rf public",
+    "rm:public": "[ -d public ] && rm -Rf public; echo 'public directory removed or did not exist'",
     "run:dev": "npm run rm:public && hugo server",
     "run:build": "npm run copy:all && rm:public && hugo && cd public && php -S localhost:1313",
     "build": "npm run copy:all && npm run rm:public && hugo --minify"
