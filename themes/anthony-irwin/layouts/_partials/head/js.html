@@ -15,6 +15,7 @@
 {{ $popper := resources.Get "js/popper.min.js" }}
 {{ $scripts = $scripts | append $popper }}
 
+{{/* Add raw vendor JS (minified already) */}}
 {{ $bootstrap := resources.Get "js/bootstrap.bundle.min.js" }}
 {{ $scripts = $scripts | append $bootstrap }}
 
