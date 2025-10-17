@@ -23,16 +23,11 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install NPM packages and copy dependencies to hugo assets
-        run: |
-          npm install
-          mkdir -p assets/scss assets/js
-          cp -r node_modules/bootstrap assets/scss
-          cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js assets/js
-          cp node_modules/@popperjs/core/dist/umd/popper.min.js assets/js
+      - name: Install NPM packages
+        run: npm install
 
       - name: Build Hugo site
-        run: hugo --minify
+        run: npm run build
 
       - name: Setup SSH key
         run: |
@@ -42,5 +37,4 @@ jobs:
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
       - name: Deploy Website via RSync
-        run: |
-          rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" public/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEST }}
+        run: rsync -avz --delete -e "ssh -i ~/.ssh/id_ed25519" public/ ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_DEST }}
