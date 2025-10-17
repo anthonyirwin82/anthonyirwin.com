@@ -1,20 +1,26 @@
+/** Copy Hugo Highlight Code Blocks:
+  * This file is a self contained javascript file that can be included into
+  * your Hugo website and it will add the CSS styles inline and add a copy
+  * button in the top right corner to copy the text and say copied for a few
+  * seconds after it is pressed.
+*/
 document.addEventListener("DOMContentLoaded", () => {
-  const highlights = document.querySelectorAll(".highlight");
+  // Inject CSS
+  const style = document.createElement("style");
+  style.textContent = `
+    .highlight {
+      margin-top: 2rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
 
-  highlights.forEach(highlight => {
-    const code = highlight.querySelector("code");
+    .copy-wrapper {
+      position: relative;
+      margin-bottom: 1rem;
+    }
 
-    // Create wrapper container
-    const wrapper = document.createElement("div");
-    wrapper.className = "copy-wrapper";
-    wrapper.style.position = "relative";
-    wrapper.style.marginBottom = "1rem";
-
-    // Create the copy button
-    const button = document.createElement("button");
-    button.innerText = "Copy";
-    button.className = "copy-button";
-    button.style.cssText = `
+    .copy-button {
       position: absolute;
       top: -1.6rem;
       right: 0;
@@ -26,35 +32,37 @@ document.addEventListener("DOMContentLoaded", () => {
       cursor: pointer;
       opacity: 0.7;
       z-index: 1;
-    `;
+    }
 
-    // Copy code on click
+    .copy-button:hover {
+      opacity: 1;
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Highlight copy functionality
+  const highlights = document.querySelectorAll(".highlight");
+
+  highlights.forEach(highlight => {
+    const code = highlight.querySelector("code");
+
+    const wrapper = document.createElement("div");
+    wrapper.className = "copy-wrapper";
+
+    const button = document.createElement("button");
+    button.innerText = "Copy";
+    button.className = "copy-button";
+
     button.addEventListener("click", () => {
-      let copied = "";
-
-      const codeLines = code.querySelectorAll("span");
-
-      codeLines.forEach(line => {
-        const children = line.children;
-        if (children.length === 2) {
-          copied += children[1].textContent + "\n";
-        } else {
-          copied += line.textContent + "\n";
-        }
-      });
-
-      navigator.clipboard.writeText(copied).then(() => {
-        // Change button text on success
-        button.innerText = "Copied!";
-        setTimeout(() => {
-          button.innerText = "Copy";
-        }, 2000);
-      }).catch(err => {
-        console.error("Copy failed:", err);
-      });
+      let text = code.innerText.replace(/\n{2,}/g, "\n").trim();
+      navigator.clipboard.writeText(text)
+        .then(() => {
+          button.innerText = "Copied!";
+          setTimeout(() => button.innerText = "Copy", 2000);
+        })
+        .catch(err => console.error("Copy failed:", err));
     });
 
-    // Add the button and code block to the wrapper
     highlight.parentNode.insertBefore(wrapper, highlight);
     wrapper.appendChild(button);
     wrapper.appendChild(highlight);
