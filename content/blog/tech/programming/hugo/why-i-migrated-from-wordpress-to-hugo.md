@@ -1,6 +1,7 @@
 +++
 date = "2025-10-14"
 title = "Why I migrated from Wordpress to Hugo"
+description = "My reasons for migrating from Wordpress to the Hugo static website generator"
 tags = ["Tech", "Programming", "Hugo"]
 bannerId = "web-dev"
 draft = false
