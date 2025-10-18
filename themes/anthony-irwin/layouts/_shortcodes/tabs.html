@@ -1,0 +1,47 @@
+{{/* Unique ID for tab group */}}
+{{ $id := printf "tabs-%d" .Ordinal }}
+
+{{/* Split content by lines */}}
+{{ $lines := split .Inner "\n" }}
+{{ $tabs := slice }}
+{{ $current := dict "title" "" "content" "" }}
+
+{{/* Parse lines into tab blocks */}}
+{{ range $lines }}
+  {{ if hasPrefix . "### " }}
+    {{ if ne ($current.title) "" }}
+      {{ $tabs = $tabs | append $current }}
+    {{ end }}
+    {{ $current = dict "title" (trim (substr . 4) " ") "content" "" }}
+  {{ else }}
+    {{ $current = merge $current (dict "content" (print ($current.content) "\n" .)) }}
+  {{ end }}
+{{ end }}
+{{ if ne ($current.title) "" }}
+  {{ $tabs = $tabs | append $current }}
+{{ end }}
+
+{{/* Render tab headers */}}
+<ul class="nav nav-tabs" id="{{ $id }}" role="tablist">
+  {{ range $i, $tab := $tabs }}
+    <li class="nav-item" role="presentation">
+      <button class="nav-link {{ if eq $i 0 }}active{{ end }}"
+        id="{{ $id }}-tab-{{ $i }}" data-bs-toggle="tab"
+        data-bs-target="#{{ $id }}-pane-{{ $i }}" type="button" role="tab"
+        aria-controls="{{ $id }}-pane-{{ $i }}" aria-selected="{{ eq $i 0 }}">
+        {{ $tab.title }}
+      </button>
+    </li>
+  {{ end }}
+</ul>
+
+{{/* Render tab content */}}
+<div class="tab-content" id="{{ $id }}-content">
+  {{ range $i, $tab := $tabs }}
+    <div class="tab-pane fade {{ if eq $i 0 }}show active{{ end }}"
+      id="{{ $id }}-pane-{{ $i }}" role="tabpanel"
+      aria-labelledby="{{ $id }}-tab-{{ $i }}">
+      {{ $tab.content | markdownify }}
+    </div>
+  {{ end }}
+</div>
