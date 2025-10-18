@@ -290,7 +290,7 @@ The value `10` is the gap in pixels that is between each widget that is added to
 
 **Example of Gtk.Box with horizontal orientation and 3 widgets inside:**
 ```mermaid
-graph TD
+graph LR
     parent[Gtk.Box Widget]
     subgraph parent[Gtk.Box Widget]
         box1[Widget]
