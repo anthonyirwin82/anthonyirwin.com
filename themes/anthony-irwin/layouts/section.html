@@ -13,19 +13,25 @@
   <article class="container">
     {{ .Content }}
     {{ $currentPath := .Path }}
+    {{ $pages := slice }}
+    {{ range .Site.Pages }}
+      {{ if and (strings.HasPrefix .Path $currentPath) (eq .Kind "page") }}
+        {{ $pages = $pages | append . }}
+      {{ end }}
+    {{ end }}
+    {{ $paginator := .Paginate $pages }}
     <ul class="list-group list-group-flush">
-      {{ range .Site.Pages }}
-        {{ if and (.Path) (strings.HasPrefix .Path $currentPath) (eq .Kind "page") }}
-          <li class="list-group-item">
-            <h2><a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a></h2>
-            {{ with .Params.Description }}
-              <p class="mb-0 text-muted">{{ . }}</p>
-            {{ else }}
-              <p class="mb-0 text-muted">{{ .Summary }}</p>
-            {{ end }}
-          </li>
-        {{ end }}
+      {{ range $paginator.Pages }}
+        <li class="list-group-item">
+          <h2><a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a></h2>
+          {{ with .Params.Description }}
+            <p class="mb-0 text-muted">{{ . }}</p>
+          {{ else }}
+            <p class="mb-0 text-muted">{{ .Summary }}</p>
+          {{ end }}
+        </li>
       {{ end }}
     </ul>
+    {{ partial "paginator.html" $paginator }}
   </article>
 {{ end }}

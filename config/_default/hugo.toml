@@ -1,3 +1,6 @@
+[pagination]
+  pagerSize = 5
+
 [markup]
   [markup.highlight]
     lineNoStart = 1
@@ -15,4 +18,4 @@
     use = ["postcss"]
 
 [build]
-writeStats = true
+ writeStats = true

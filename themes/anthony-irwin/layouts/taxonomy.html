@@ -8,10 +8,11 @@
           <h1 class="text-center">{{ .Title }}</h1>
       </div>
   </div>
-  <article class="container">
-    {{ .Content }}
-    {{ range .Pages }}
-      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
-    {{ end }}
-  </article>
+   <article class="container">
+     {{ .Content }}
+     {{ range .Paginator.Pages }}
+       <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+     {{ end }}
+     {{ partial "paginator.html" .Paginator }}
+   </article>
 {{ end }}

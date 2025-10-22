@@ -8,17 +8,20 @@
           <h1 class="text-center">{{ .Title }} Tags</h1>
       </div>
   </div>
-  <article class="container">
-    {{ .Content }}
-    {{ range .Pages }}
-          <li class="list-group-item">
-            <h2><a href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong></a></h2>
-            {{ with .Params.Description }}
-              <p class="mb-0 text-muted">{{ . }}</p>
-            {{ else }}
-              <p class="mb-0 text-muted">{{ .Summary }}</p>
-            {{ end }}
-          </li>
-    {{ end }}
-  </article>
+   <article class="container">
+     {{ .Content }}
+     <ul class="list-group list-group-flush">
+       {{ range .Paginator.Pages }}
+             <li class="list-group-item">
+               <h2><a href="{{ .RelPermalink }}"><strong>{{ .LinkTitle }}</strong></a></h2>
+               {{ with .Params.Description }}
+                 <p class="mb-0 text-muted">{{ . }}</p>
+               {{ else }}
+                 <p class="mb-0 text-muted">{{ .Summary }}</p>
+               {{ end }}
+             </li>
+       {{ end }}
+     </ul>
+     {{ partial "paginator.html" .Paginator }}
+   </article>
 {{ end }}
