@@ -1,0 +1,37 @@
+{{ define "main" }}
+  {{ $page := . }}
+  {{ with .Params.BannerId }}
+    <div id="{{ . }}" class="container-fluid screen banner banner-height">
+  {{ else }}
+    <div id="zoom-session" class="container-fluid screen banner banner-height">
+  {{ end }}
+      <div class="d-flex justify-content-center align-items-center my-auto banner-height">
+          <h1 class="text-center">{{ .Title }}</h1>
+      </div>
+  </div>
+
+  <article class="container">
+    <div class="row">
+      <div class="col-md-4">
+        {{ with (index $page.Params "book-img") }}
+          <img src="{{ . }}" alt="{{ (index $page.Params "book-name") }}" class="img-fluid">
+        {{ end }}
+      </div>
+      <div class="col-md-8">
+        <h2>{{ (index $page.Params "book-name") }}</h2>
+        <p><strong>Authors:</strong>
+          {{ range (index $page.Params "book-authors") }}
+            <span class="badge rounded-pill bg-primary me-1">{{ . }}</span>
+          {{ end }}
+        </p>
+        <p><strong>Rating:</strong> {{ range seq (index $page.Params "book-rating") }}⭐{{ end }}</p>
+        <p>{{ (index $page.Params "book-description") }}</p>
+        {{ with (index $page.Params "book-url") }}
+          <a href="{{ . }}" target="_blank" class="btn btn-primary">Get Book</a>
+        {{ end }}
+      </div>
+    </div>
+    <h2 class="mt-4">My Review and Key Take Away Points from {{ (index $page.Params "book-name") }}</h2>
+    {{ .Content }}
+  </article>
+{{ end }}

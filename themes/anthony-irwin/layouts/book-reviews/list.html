@@ -1,0 +1,44 @@
+{{ define "main" }}
+  {{ with .Params.BannerId }}
+    <div id="{{ . }}" class="container-fluid screen banner banner-height">
+  {{ else }}
+    <div id="zoom-session" class="container-fluid screen banner banner-height">
+  {{ end }}
+      <div class="d-flex justify-content-center align-items-center my-auto banner-height">
+          <h1 class="text-center">{{ .Title }}</h1>
+      </div>
+  </div>
+
+  <article class="container">
+    {{ .Content }}
+    <div class="row">
+      {{ range $book := .Paginator.Pages }}
+        <div class="col-lg-4 col-sm-12 mb-4">
+          <div class="card h-100">
+            <div class="row g-0 h-100">
+              <div class="col-4">
+                {{ with (index $book.Params "book-img") }}
+                  <img src="{{ . }}" alt="{{ (index $book.Params "book-name") }}" class="img-fluid rounded-start h-100 object-fit-cover">
+                {{ end }}
+              </div>
+              <div class="col-8">
+                <div class="card-body">
+                  <h5 class="card-title"><a href="{{ $book.RelPermalink }}">{{ (index $book.Params "book-name") }}</a></h5>
+                  <p class="card-text"><strong>Authors:</strong>
+                    {{ range (index $book.Params "book-authors") }}
+                      <span class="badge rounded-pill bg-primary me-1">{{ . }}</span>
+                    {{ end }}
+                  </p>
+                  <p class="card-text">{{ (index $book.Params "book-description") | truncate 100 }}</p>
+                  <p class="card-text"><strong>Rating:</strong> {{ range seq (index $book.Params "book-rating") }}⭐{{ end }}</p>
+                  <a href="{{ $book.RelPermalink }}" class="btn btn-sm btn-primary">Read Review</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {{ end }}
+    </div>
+{{ partial "paginator.html" .Paginator }}
+  </article>
+{{ end }}

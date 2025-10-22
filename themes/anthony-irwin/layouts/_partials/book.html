@@ -1,0 +1,13 @@
+{{- $title := index .Params.book "title" -}}
+{{- $author := index .Params.book "author" -}}
+{{- $rating := index .Params.book "rating" -}}
+{{- $image := index .Params.book "image" -}}
+{{- $url := index .Params.book "url" -}}
+
+<div class="book-card">
+  <a href="{{ $url }}"><img src="{{ .Site.BaseURL }}{{ $image }}" class="img-fluid" loading="lazy"/></a>
+  <br/>
+  <a href="{{ $url }}">{{ $title }}</a> by {{ $author }}
+  <br/>
+  {{ "⭐" | strings.Repeat $rating }}
+</div>
