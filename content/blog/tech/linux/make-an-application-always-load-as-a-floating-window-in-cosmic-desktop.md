@@ -6,6 +6,8 @@ tags = ["Tech", "Linux", "Cosmic-Desktop"]
 bannerId = "data-center"
 draft = false
 +++
+I normally use Hyprland for my desktop environment because I like using tiling window managers and decided to try out Cosmic Desktop.
+
 I primarily use the Cosmic Desktop as a tiling window manager and I want certain applications like the calculator to load as a floating window rather then being tiled.
 
 At the time of writing this the only way to do this is by creating and editing a configuration file manually. This is not documented and I had to go searching forums and github issues to find out how to do this.
