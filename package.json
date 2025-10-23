@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "create:assets": "mkdir -p assets/js && mkdir -p assets/scss && mkdir -p assets/css && mkdir -p static/assets/fonts",
+    "create:assets": "mkdir -p assets/js && mkdir -p assets/scss && mkdir -p assets/css && mkdir -p assets/fonts && mkdir -p static/assets/fonts",
     "copy:mermaid": "cp node_modules/mermaid/dist/mermaid.min.js assets/js/",
     "copy:bootstrap-js": "cp node_modules/bootstrap/dist/js/bootstrap.bundle.min.js assets/js/",
     "copy:bootstrap-scss": "cp -rf node_modules/bootstrap assets/scss/",
