@@ -10,10 +10,10 @@
     "copy:bootstrap-scss": "cp -rf node_modules/bootstrap assets/scss/",
     "copy:popper": "cp node_modules/@popperjs/core/dist/umd/popper.min.js assets/js/",
     "copy:lunr": "cp node_modules/lunr/lunr.min.js assets/js/",
-    "copy:fontawesome": "cp node_modules/@fortawesome/fontawesome-free/css/all.min.css assets/css/fontawesome.all.min.css && cp -r node_modules/@fortawesome/fontawesome-free/webfonts assets/fonts/ && sed -i 's|../webfonts/|/assets/fonts/|g' assets/css/fontawesome.all.min.css",
+    "copy:fontawesome": "cp node_modules/@fortawesome/fontawesome-free/css/all.min.css assets/css/fontawesome.all.min.css && cp -r node_modules/@fortawesome/fontawesome-free/webfonts/* assets/fonts/ && sed -i 's|../webfonts/|/assets/fonts/|g' assets/css/fontawesome.all.min.css",
     "copy:all": "npm run create:assets && npm run copy:mermaid && npm run copy:popper && npm run copy:bootstrap-js && npm run copy:bootstrap-scss && npm run copy:lunr && npm run copy:fontawesome",
     "rm:public": "[ -d public ] && rm -Rf public; echo 'public directory removed or did not exist'",
-    "run:dev": "npm run rm:public && hugo server",
+    "run:dev": "npm run copy:all && npm run rm:public && hugo server",
     "run:build": "npm run copy:all && npm run rm:public && hugo && cd public && php -S localhost:1313",
     "build": "npm run copy:all && npm run rm:public && hugo --minify"
   },
