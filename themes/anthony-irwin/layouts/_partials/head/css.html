@@ -1,5 +1,9 @@
 {{ $cssFiles := slice }}
 
+{{/* Add Font Awesome */}}
+{{ $fontawesome := resources.Get "css/fontawesome.all.min.css" }}
+{{ $cssFiles = $cssFiles | append $fontawesome }}
+
 {{/* Add main.css */}}
 {{ $mainCSS := resources.Get "css/main.css" }}
 {{ $cssFiles = $cssFiles | append ($mainCSS | postCSS) }}

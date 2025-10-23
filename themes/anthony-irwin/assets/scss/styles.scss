@@ -5,6 +5,22 @@ $footer-color: $header-color;
 $block-border-width: 5px;
 $site-primary-color: #4481b3;
 
+.input-group.rounded {
+  border: 1px solid $site-primary-color;
+  border-radius: 0.375rem;
+  overflow: hidden;
+}
+
+.input-group.rounded .form-control {
+  border: none;
+  border-radius: 0;
+}
+
+.input-group.rounded .btn {
+  border: none;
+  border-radius: 0;
+}
+
 .header-block {
   background-color: $header-background;
   color: $header-color;

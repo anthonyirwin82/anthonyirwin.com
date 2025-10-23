@@ -1,0 +1,40 @@
+{{- $data := slice -}}
+{{- $title := "" -}}
+{{- $description := "" -}}
+{{- $content := "" -}}
+{{- $tags := "" -}}
+
+{{- range site.RegularPages.ByTitle -}}
+  {{- with .Title -}}
+    {{- $title = . | markdownify | plainify | strings.TrimSpace -}}
+  {{- end -}}
+
+  {{- with .Description -}}
+    {{- $description = . | markdownify | plainify | strings.TrimSpace -}}
+  {{- else -}}
+    {{- $description = $title -}}
+  {{- end -}}
+  
+  {{- with .Summary -}}
+    {{- $content = . | markdownify | plainify | strings.TrimSpace | truncate 2000 -}}
+  {{- else -}}
+    {{- $content = $description -}}
+  {{- end -}}
+
+  {{- $tags = .Params.tags | default slice -}}
+  {{- $tagsProcessed := slice -}}
+  {{- range $tags -}}
+    {{- $str := . | printf "%s" -}}
+    {{- $processed := $str | strings.ReplaceRE "[-–]" " " -}}
+    {{- $tagsProcessed = $tagsProcessed | append $processed -}}
+  {{- end -}}
+
+  {{- $tagsStr := delimit $tagsProcessed " " -}}
+  {{- $dict := dict "title" $title "description" $description "content" $content "tags" $tagsStr "url" .RelPermalink -}}
+  {{- if .Params.keywords -}}
+    {{- $dict = merge $dict (dict "keywords" .Params.keywords) -}}
+  {{- end -}}
+  {{- $data = $data | append $dict -}}
+{{- end -}}
+
+{{- $data | jsonify (dict "indent" "  ") -}}

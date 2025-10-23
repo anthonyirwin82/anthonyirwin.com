@@ -3,7 +3,12 @@ node_modules/
 assets/js/bootstrap.bundle.min.js
 assets/js/popper.min.js
 assets/js/mermaid.min.js
+assets/js/lunr.min.js
+assets/js/search.js
+assets/css/fontawesome.all.min.css
+assets/fonts/
 assets/scss/bootstrap
+static/search-index.json
 resources/_gen/
 .hugo_build.lock
 hugo_stats.json

@@ -15,12 +15,23 @@
 {{ $bootstrap := resources.Get "js/bootstrap.bundle.min.js" }}
 {{ $scripts = $scripts | append $bootstrap }}
 
+{{/* Add raw vendor JS (minified already) */}}
+{{ $lunr := resources.Get "js/lunr.min.js" }}
+{{ $scripts = $scripts | append $lunr }}
+
 {{/* Build and add copy-code.js */}}
 {{ $copyCode := resources.Get "js/copy-code.js" | js.Build (dict
     "minify" (not hugo.IsDevelopment)
     "sourceMap" (cond hugo.IsDevelopment "external" "")
 ) }}
 {{ $scripts = $scripts | append $copyCode }}
+
+{{/* Build and add search.js */}}
+{{ $search := resources.Get "js/search.js" | js.Build (dict
+    "minify" (not hugo.IsDevelopment)
+    "sourceMap" (cond hugo.IsDevelopment "external" "")
+) }}
+{{ $scripts = $scripts | append $search }}
 
 {{ if hugo.IsDevelopment }}
   {{ range $scripts }}

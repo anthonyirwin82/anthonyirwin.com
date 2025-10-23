@@ -21,11 +21,15 @@
   <meta name="description" content="{{ trim .Summary ' ' | plainify | htmlEscape }}">
 {{ end}}
 
-{{ with .Params.Robots }}
-  <meta name="robots" content="{{ . }}">
-{{ else }}
-  <meta name="robots" content="index, follow">
-{{ end }}
+  {{ if .Params.sitemap_exclude }}
+    <meta name="robots" content="noindex, nofollow">
+  {{ else }}
+    {{ with .Params.Robots }}
+      <meta name="robots" content="{{ . }}">
+    {{ else }}
+      <meta name="robots" content="index, follow">
+    {{ end }}
+  {{ end }}
 
 {{ partial "opengraph.html" . }}
 {{ partial "twitter_cards.html" . }}
