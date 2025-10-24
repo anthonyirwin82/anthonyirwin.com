@@ -5,7 +5,7 @@ description = "In this post, I'll walk you through a complete GitHub Actions wor
 tags = ['Tech', 'Programming', 'Hugo', 'github']
 draft = false
 +++
-In this post, I'll walk you through a complete GitHub Actions workflow for building and deploying a Hugo static website to GitHub Pages. This setup is ideal for developers who want a free, automated hosting solution for their open source projects, blogs, documentation sites, or portfolios. It replaces manual uploads with a push-to-deploy pipeline.
+In this post, I'll walk you through a complete GitHub Actions workflow for building and deploying a Hugo static website to GitHub Pages. This setup is ideal for developers who want a free, automated hosting solution for their open source projects, blogs, documentation sites, or portfolios. It replaces manual uploads with a push to deploy pipeline.
 
 The workflow triggers on pushes to the main branch (or manually via the Actions tab), builds your Hugo site using Node.js for any custom scripts, and deploys the output to GitHub Pages. It's efficient, secure, and leverages official GitHub Actions for reliability.
 
@@ -13,6 +13,9 @@ The workflow triggers on pushes to the main branch (or manually via the Actions 
 
 - A Hugo website in a GitHub repository
 - GitHub Pages enabled for the repository (go to Settings > Pages and then select "GitHub Actions" as the source)
+
+### Example of a setup for some software I released as open source.
+!["GitHub Pages with custom domain setup"](/assets/img/blog/tech/programming/hugo/github-pages-custom-domain.webp)
 
 ## Setting Up the Workflow
 
