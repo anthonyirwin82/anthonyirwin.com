@@ -2,7 +2,7 @@
 date = "2023-05-15"
 title = "Fix Unity Game Engine Crashing With Nvidia Graphics Card"
 description = "This article describes a solution for fixing Unity Game Engine crashes when using NVIDIA graphics cards on Linux systems"
-bannerId = "zoom-session"
+bannerId = "web-dev"
 tags = ["Tech", "Linux"]
 draft = false
 +++
