@@ -1,5 +1,5 @@
 +++
-title = "Use GitHub Actions Workflow to Deploy Your Website using rsync automatically"
+title = "How to use GitHub Actions Workflow to Deploy Your Website using rsync automatically"
 description = "Learn how to automate your Hugo website deployment with GitHub Actions and rsync for fast, secure updates."
 date = 2025-10-24
 tags = ['tech', 'programming', 'hugo', 'github', 'rsync']
@@ -33,6 +33,9 @@ name: Deploy Hugo Website via RSync
 on:
   push:
     branches: [ main ]
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   deploy:
@@ -40,7 +43,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -49,14 +52,13 @@ jobs:
           extended: true
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '20'
+          node-version: 'latest'
+          cache: 'npm'  # Optional: Cache npm deps for faster runs
 
       - name: Install NPM packages
-        run: npm install
-
-      - name: Build Hugo site
+        run: npm ci # better on CI deployments then npm install
         run: npm run build
 
       - name: Setup SSH key
