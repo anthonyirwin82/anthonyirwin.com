@@ -2,7 +2,7 @@
 title = "Use GitHub Actions Workflow to Deploy Your Website using rsync automatically"
 description = "Learn how to automate your Hugo website deployment with GitHub Actions and rsync for fast, secure updates."
 date = 2025-10-24
-tags = ['tech', 'programming', 'hugo', 'github']
+tags = ['tech', 'programming', 'hugo', 'github', 'rsync']
 draft = false
 +++
 
