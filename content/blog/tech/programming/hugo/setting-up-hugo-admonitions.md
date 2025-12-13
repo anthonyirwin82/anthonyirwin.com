@@ -18,7 +18,7 @@ Outside of your hugo installation run the following command:
 ```bash
 git clone git@github.com:KKKZOZ/hugo-admonitions.git themes/hugo-admonitions --depth=1
 ```
-> [!NOTE] The --depth=1 tells git to only download the most current commit and not all the git history.
+> [!NOTE] The `--depth=1` tells git to only download the most current commit and not all the git history.
 
 Now you need to delete the .git and .github directories from the theme download so it does not conflict with your repo.
 
