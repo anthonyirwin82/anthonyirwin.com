@@ -1,5 +1,6 @@
 +++
 title = "Anthony Irwin is a fully qualified hypnotherapist"
+description = "Anthony Irwin is a fully qualified hypnotherapist"
 bannerId = "zoom-session"
 tags = ["about-anthony"]
 draft = false
