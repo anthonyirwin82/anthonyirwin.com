@@ -1,0 +1,30 @@
+{{ $id := printf "accordion-%d" (index (seq 1 1) 0) }}
+{{ $raw := .Inner }}
+{{ $sections := split $raw "\n# " }}
+<div class="accordion mb-3" id="{{ $id }}">
+  {{ range $i, $section := $sections }}
+    {{ $section = strings.TrimLeft "# " $section }}
+    {{ $trimmed := strings.TrimSpace $section }}
+    {{ if $trimmed }}
+      {{ $parts := split $trimmed "\n" }}
+      {{ $title := index $parts 0 }}
+      {{ $body := "" }}
+      {{ if gt (len $parts) 1 }}
+        {{ $bodyParts := after 1 $parts }}
+        {{ $body = delimit $bodyParts "\n" }}
+      {{ end }}
+      <div class="accordion-item">
+        <h3 class="accordion-header">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#{{ $id }}-item-{{ $i }}" aria-expanded="false" aria-controls="{{ $id }}-item-{{ $i }}">
+            {{ $title }}
+          </button>
+        </h3>
+        <div id="{{ $id }}-item-{{ $i }}" class="accordion-collapse collapse" data-bs-parent="#{{ $id }}">
+          <div class="accordion-body">
+            {{ $body | markdownify }}
+          </div>
+        </div>
+      </div>
+    {{ end }}
+  {{ end }}
+</div>
