@@ -48,7 +48,7 @@ More recently, I migrated my personal website from Wordpress to the Hugo static 
 > [!TIP]
 > ![TUI Portfolio Resume App](/assets/img/tuiportfolioresume.webp)
 > 
-> I have create a TUI Portfolio Resume App that technical users can use via SSH to access my most recent Portfolio/Resume. 
+> I have created a TUI Portfolio Resume App that technical users can use via SSH to access my most recent Portfolio/Resume. 
 > Use the command below to access the app via SSH without installing anything:
 > ```bash {style="solarized-light"}
 > ssh anthonyirwin.com -p 2222
