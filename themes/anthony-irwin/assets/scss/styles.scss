@@ -62,6 +62,17 @@ article p:first-of-type::first-letter, main p:first-of-type::first-letter {
 */
 
 /* Banners */
+#forex {
+  min-height: 300px;
+  padding: 1.5625rem;
+  background-color: $site-primary-color;
+  background-image:url('/assets/img/mt4/candlestick-chart.webp');
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+  background-blend-mode: multiply;
+}
+
 #mt4-stuff {
   min-height: 300px;
   padding: 1.5625rem;

@@ -52,3 +52,29 @@
     mermaid.initialize({ startOnLoad: true });
   </script>
 {{ end }}
+
+{{/* Interactive Trade Calculator */}}
+{{ if or (.Page.Store.Get "hasTradeCalc") (.Params.riskCalculator) }}
+  {{ $tradeCalc := resources.Get "js/trade-calculator.js" | js.Build (dict
+      "minify" (not hugo.IsDevelopment)
+  ) | fingerprint }}
+  <script src="{{ $tradeCalc.RelPermalink }}" integrity="{{ $tradeCalc.Data.Integrity }}" crossorigin="anonymous" defer></script>
+{{ end }}
+
+{{/* KaTeX is only included if the page uses math */}}
+{{ if or (.Page.Store.Get "hasKaTeX") (.Params.math) }}
+  {{ $katexJS := resources.Get "js/katex.min.js" | fingerprint }}
+  <script src="{{ $katexJS.RelPermalink }}" integrity="{{ $katexJS.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  {{ $katexAutoRender := resources.Get "js/auto-render.min.js" | fingerprint }}
+  <script src="{{ $katexAutoRender.RelPermalink }}" integrity="{{ $katexAutoRender.Data.Integrity }}" crossorigin="anonymous" defer></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      renderMathInElement(document.body, {
+        delimiters: [
+          {left: "$$", right: "$$", display: true},
+          {left: "$", right: "$", display: false}
+        ]
+      });
+    });
+  </script>
+{{ end }}
