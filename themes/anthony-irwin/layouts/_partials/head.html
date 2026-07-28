@@ -4,3 +4,8 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 {{ partial "head/seo.html" . }}
 {{ partialCached "head/css.html" . }}
+{{/* Load KaTeX CSS separately if the page uses math */}}
+{{ if or (.Page.Store.Get "hasKaTeX") (.Params.math) }}
+  {{ $katexCSS := resources.Get "css/katex.min.css" | fingerprint }}
+  <link rel="stylesheet" href="{{ $katexCSS.RelPermalink }}" integrity="{{ $katexCSS.Data.Integrity }}" crossorigin="anonymous">
+{{ end }}
