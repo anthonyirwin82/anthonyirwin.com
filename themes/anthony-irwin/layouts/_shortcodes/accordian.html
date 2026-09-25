@@ -1,4 +1,5 @@
 {{ $id := printf "accordion-%d" (index (seq 1 1) 0) }}
+{{- $page := .Page }}
 {{ $raw := .Inner }}
 {{ $sections := split $raw "\n# " }}
 <div class="accordion mb-3" id="{{ $id }}">
@@ -21,7 +22,7 @@
         </h3>
         <div id="{{ $id }}-item-{{ $i }}" class="accordion-collapse collapse" data-bs-parent="#{{ $id }}">
           <div class="accordion-body">
-            {{ $body | markdownify }}
+            {{ $body | $page.RenderString }}
           </div>
         </div>
       </div>

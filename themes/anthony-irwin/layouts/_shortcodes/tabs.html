@@ -1,5 +1,6 @@
 {{/* Unique ID for tab group */}}
 {{ $id := printf "tabs-%d" .Ordinal }}
+{{- $page := .Page }}
 
 {{/* Split content by lines */}}
 {{ $lines := split .Inner "\n" }}
@@ -41,7 +42,7 @@
     <div class="tab-pane fade {{ if eq $i 0 }}show active{{ end }}"
       id="{{ $id }}-pane-{{ $i }}" role="tabpanel"
       aria-labelledby="{{ $id }}-tab-{{ $i }}">
-      {{ $tab.content | markdownify }}
+      {{ $tab.content | $page.RenderString }}
     </div>
   {{ end }}
 </div>

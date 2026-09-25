@@ -16,7 +16,7 @@
     "rm:public": "[ -d public ] && rm -Rf public; echo 'public directory removed or did not exist'",
     "run:dev": "npm run copy:all && npm run rm:public && hugo server",
     "run:build": "npm run copy:all && npm run rm:public && hugo && cd public && php -S localhost:1313",
-    "build": "npm run copy:all && npm run rm:public && hugo --minify"
+    "build": "npm run copy:all && npm run rm:public && hugo"
   },
   "keywords": [],
   "author": "",

@@ -1,2 +1,6 @@
 [minify]
-minifyOutput = false
+minifyOutput = true
+
+[services]
+[services.googleAnalytics]
+  id = 'G-TS0R7HQP47'

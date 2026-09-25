@@ -1,4 +1,5 @@
 {{ $ga := site.Config.Services.GoogleAnalytics }}
+{{- with $ga.ID }}
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
@@ -25,3 +26,4 @@
     });
   }
 </script>
+{{- end }}
