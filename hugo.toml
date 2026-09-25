@@ -1,5 +1,5 @@
 baseURL = 'https://anthonyirwin.com/'
-languageCode = 'en-us'
+locale = 'en-us'
 theme = ['hugo-admonitions', 'anthony-irwin']
 title = 'Anthony Irwin'
 enableRobotsTXT = true

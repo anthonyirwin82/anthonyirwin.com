@@ -18,4 +18,5 @@
     use = ["postcss"]
 
 [build]
- writeStats = true
+  [build.buildStats]
+    enable = true

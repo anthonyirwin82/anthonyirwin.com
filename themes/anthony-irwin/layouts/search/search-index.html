@@ -16,7 +16,7 @@
   {{- end -}}
   
   {{- with .Summary -}}
-    {{- $content = . | markdownify | plainify | strings.TrimSpace | truncate 2000 -}}
+    {{- $content = . | plainify | strings.TrimSpace | truncate 2000 -}}
   {{- else -}}
     {{- $content = $description -}}
   {{- end -}}

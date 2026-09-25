@@ -11,7 +11,7 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      {{ with site.Data.navigation.primary }}
+      {{ with hugo.Data.navigation.primary }}
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 sriracha-regular">
           {{ range $index, $item := . }}
             {{ if $item.menu_items }}

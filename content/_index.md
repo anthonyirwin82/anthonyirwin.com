@@ -43,7 +43,7 @@ More recently, I migrated my personal website from Wordpress to the Hugo static 
 
 {{< /tabs >}}
 
-<hr />
+---
 
 > [!TIP]
 > ![TUI Portfolio Resume App](/assets/img/tuiportfolioresume.webp)
