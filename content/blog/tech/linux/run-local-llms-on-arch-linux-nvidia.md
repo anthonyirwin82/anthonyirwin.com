@@ -7,7 +7,7 @@ draft = false
 +++
 Running AI models locally means your prompts never leave your machine, you don't pay per token, and you learn how the technology actually works. This article covers the setup I use on Arch Linux with an NVIDIA GeForce RTX 3050 (4GB VRAM), a Radeon integrated GPU, and 64GB of system RAM.
 
-To set expectations up front: this rig is not a local GPT-killer. What it *is* is a genuinely capable private assistant — a snappy small model for everyday chat, a decent coding model for agentic work in OpenCode, and enough RAM to run surprisingly large models when you don't mind waiting a few extra seconds.
+To set expectations up front: this rig is not a local GPT-killer. What it *is* is a genuinely capable private assistant — a snappy small model for everyday chat, a decent coding model for agentic work in OpenCode (Although slow, much slower then online models), and enough RAM to run surprisingly large models when you don't mind waiting a few extra seconds.
 
 By the end you'll have a single `llama-server` process serving an OpenAI-compatible API on localhost, managed by systemd, that only consumes resources when a model is actually requested. You'll have a browser chat UI at `http://localhost:8080` for trying models and watching their reasoning, plus the OpenCode configuration to use the same server as a local coding assistant (this article targets **OpenCode V2, currently in beta**).
 
