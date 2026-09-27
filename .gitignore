@@ -3,7 +3,10 @@ assets/js/bootstrap.bundle.min.js
 assets/js/popper.min.js
 assets/js/mermaid.min.js
 assets/js/lunr.min.js
+assets/js/katex.min.js
+assets/js/auto-render.min.js
 assets/css/fontawesome.all.min.css
+assets/css/katex.min.css
 assets/fonts/
 assets/scss/bootstrap
 static/assets/fonts/fa-*.woff2

@@ -1,3 +1,8 @@
+{{- /*
+Intentionally unused: Hugo reports this partial as unused because the live
+book-reviews layouts render their own markup. Kept deliberately as a compact
+book-card renderer for future use. Do not delete - see refactor-plan.md A2.
+*/ -}}
 {{- $title := index .Params.book "title" -}}
 {{- $author := index .Params.book "author" -}}
 {{- $rating := index .Params.book "rating" -}}
