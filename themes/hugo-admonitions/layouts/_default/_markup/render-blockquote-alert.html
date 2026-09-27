@@ -9,26 +9,20 @@
     {{- errorf "Hugo-admonitions requires Hugo v%s or later. Please upgrade Hugo to v%s or higher." $minHugoVersion $minHugoVersion }}
   {{- end -}}
 
-  {{- /* Transpile Sass to CSS and render the link element once per page. */}}
-  {{- if not (.Page.Store.Get "admonition-style-loaded-flag") }}
-    {{- with resources.Get "sass/vendors/_admonitions.scss" }}
-      {{- $opts := dict
-        "enableSourceMap" (not hugo.IsProduction)
-        "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
-        "targetPath" "css/vendors/admonitions.css"
-      }}
-      {{- with . | toCSS $opts }}
-        {{- if hugo.IsProduction }}
-          {{- with . | fingerprint }}
-            <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
-          {{- end }}
-        {{- else }}
-          <link rel="stylesheet" href="{{ .RelPermalink }}">
-        {{- end }}
-      {{- end }}
-    {{- end }}
-    {{- .Page.Store.Set "admonition-style-loaded-flag" true }}
-  {{- end }}
+  {{- /*
+    The stylesheet is deliberately NOT linked from here.
+
+    It used to be, guarded by a page Store flag so the link appeared once per
+    page. That guard is unsound: a hook also runs whenever a page's content is
+    rendered for a summary, a feed item or the search index, and those renders
+    are thrown away while the flag they set survives for the life of the
+    process. Under `hugo server` a page can therefore be served with the flag
+    already set, the link suppressed, and the bare inline SVGs left to fall
+    back to their default size.
+
+    The link now lives in the document head, chosen from the page source, which
+    has no such ordering dependency. See _partials/head.html.
+  */}}
 
   {{- /* Map alert type to icon */}}
   {{- $icons := dict 
@@ -61,6 +55,33 @@
   {{- $iconFile := index $icons $type }}
   {{- $partial := printf "admonitions/icons/%s" $iconFile }}
 
+  {{- /*
+    Re-render any code block inside this admonition with a pale chroma palette.
+    hugo-admonitions forces `pre > code` to near-black text, so the site-wide
+    dark palette leaves plain tokens at roughly 1:1 contrast and effectively
+    invisible. Re-highlighting under a pale style makes the chroma background
+    pale, so that forced text colour becomes readable again.
+
+    render-codeblock.html stashed each block's code, language and options on
+    the page, so the swap needs no second parse of the markdown. Only markup
+    inside this admonition is touched; blocks elsewhere keep the site default.
+
+    See the PurgeCSS note in render-codeblock.html before editing the wording
+    of this comment: PurgeCSS reads this file and keeps a selector whose bare
+    words appear in it, so a stray word can change the CSS bundle hash.
+  */}}
+  {{- $admonitionText := .Text -}}
+  {{- $page := .Page -}}
+  {{- $codeSeq := int ($page.Store.Get "admonitionCodeSeq" | default 0) -}}
+  {{- range seq 1 $codeSeq -}}
+    {{- with $page.Store.Get (printf "admonitionCode:%d" .) -}}
+      {{- if strings.Contains $admonitionText .html -}}
+        {{- $lightOpts := merge .opts (dict "style" "solarized-light") -}}
+        {{- $admonitionText = replace $admonitionText .html (transform.Highlight .code .lang $lightOpts) -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+
   {{- /* Check if icon exists */}}
   {{- if not (templates.Exists (printf "partials/%s" $partial)) }}
     {{- errorf "The blockquote render hook was unable to find the icon partial at layouts/partials/%s for admonition type '%s'." $partial $type }}
@@ -76,9 +97,9 @@
         <span>{{ $title }}</span>
         {{- /* Optional: Add a custom chevron/indicator here via span/svg if you hide the default one */}}
       </summary>
-      {{- with .Text }}
+      {{- with $admonitionText }}
       <div class="admonition-content">
-        {{ . }}
+        {{ . | safeHTML }}
       </div>
       {{- end }}
     </details>
@@ -90,9 +111,9 @@
         {{- partialCached $partial . }}
         <span>{{ $title }}</span>
       </div>
-      {{- with .Text }}
+      {{- with $admonitionText }}
       <div class="admonition-content">
-        {{ . }}
+        {{ . | safeHTML }}
       </div>
       {{- end }}
     </div>

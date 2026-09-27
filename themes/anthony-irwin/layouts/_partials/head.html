@@ -4,6 +4,49 @@
 <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ printf "%s | %s" .Title site.Title }}{{ end }}</title>
 {{ partial "head/seo.html" . }}
 {{ partialCached "head/css.html" . }}
+{{- /*
+  hugo-admonitions vendors its own stylesheet, kept out of the site bundle.
+  It is linked here rather than from the blockquote render hook because that
+  hook also fires when content is rendered for a summary, a feed or the search
+  index, and those renders are discarded. A page flag set during one of them
+  outlived the render, so a later render of the page itself skipped the link and
+  left the bare header SVGs at their default size.
+
+  Deciding from page source keeps this independent of render order. A page needs
+  the sheet when its own source declares an alert, or when a listing can pull a
+  summary that declares one. Listings only fall back to .Summary when a page has
+  no description, so that second case starts applying only once some
+  description-less page carries an alert; from then on every page gets the
+  sheet, which is heavier than strictly needed but never wrong.
+*/ -}}
+{{- $alertSyntax := `\[\![A-Z]+\]` -}}
+{{- $needsAdmonitions := gt (len (findRE $alertSyntax .RawContent)) 0 -}}
+{{- if not $needsAdmonitions -}}
+  {{- range site.RegularPages -}}
+    {{- if and (not .Params.description) (gt (len (findRE $alertSyntax .RawContent)) 0) -}}
+      {{- $needsAdmonitions = true -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if $needsAdmonitions -}}
+  {{- $admonitionsSCSS := resources.Get "sass/vendors/_admonitions.scss" -}}
+  {{- with $admonitionsSCSS -}}
+    {{- $admonitionsOpts := dict
+      "enableSourceMap" (not hugo.IsProduction)
+      "outputStyle" (cond hugo.IsProduction "compressed" "expanded")
+      "targetPath" "css/vendors/admonitions.css"
+    -}}
+    {{- with . | toCSS $admonitionsOpts -}}
+      {{- if hugo.IsProduction -}}
+        {{- with . | fingerprint -}}
+          <link rel="stylesheet" href="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" crossorigin="anonymous">
+        {{- end -}}
+      {{- else -}}
+        <link rel="stylesheet" href="{{ .RelPermalink }}">
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 {{/* Load KaTeX CSS separately if the page uses math */}}
 {{ if or (.Page.Store.Get "hasKaTeX") (.Params.math) }}
   {{ $katexCSS := resources.Get "css/katex.min.css" | fingerprint }}

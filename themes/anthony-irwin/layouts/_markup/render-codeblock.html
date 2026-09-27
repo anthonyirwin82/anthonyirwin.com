@@ -1,0 +1,36 @@
+{{- /*
+  render-codeblock.html
+
+  Reproduces Hugo's built-in code fence output byte for byte, and stashes the
+  inputs on the page so the admonition blockquote hook can re-render the same
+  block under a pale chroma palette.
+
+  Why: hugo-admonitions paints `pre` inside an admonition with a pale grey
+  background and forces `pre > code` to near-black text, while chroma inlines
+  its own background on `pre`. With the site-wide dark palette (dracula) that
+  pairing lands at roughly 1:1 contrast, so plain tokens are effectively
+  invisible. Re-highlighting with a pale solarized palette inside admonitions
+  makes the chroma background pale, so the forced near-black text reads.
+
+  Two details are load-bearing for matching Hugo's default exactly:
+    - `printf "%s\n" .Inner` -- `.Inner` has no trailing newline, but the
+      built-in renderer keeps one, and chroma preserves it.
+    - `merge .Options (dict "type" .Type)` -- keeps markdown attributes such as
+      {linenos=true} working.
+
+  Blocks outside admonitions are never replaced, so this hook's output is their
+  final output.
+
+  NOTE: PurgeCSS scans `themes/**\/layouts\/**\/*.html` and keeps a selector if
+  any bare word from it appears there. Writing that word in a comment here is
+  enough to pull an extra selector into the bundle and change its hash, so this
+  comment deliberately says "pale" rather than the style's own name.
+*/ -}}
+{{- $page := .Page -}}
+{{- $seq := add (int ($page.Store.Get "admonitionCodeSeq" | default 0)) 1 -}}
+{{- $page.Store.Set "admonitionCodeSeq" $seq -}}
+{{- $code := printf "%s\n" .Inner -}}
+{{- $opts := merge .Options (dict "type" .Type) -}}
+{{- $highlighted := transform.Highlight $code .Type $opts -}}
+{{- $page.Store.Set (printf "admonitionCode:%d" $seq) (dict "html" $highlighted "code" $code "lang" .Type "opts" $opts) -}}
+{{- $highlighted -}}
